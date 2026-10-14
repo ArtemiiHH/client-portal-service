@@ -60,7 +60,7 @@ try {
     await page.goBack();
     await page.getByRole('heading', {name:"Let's Talk About Your Client Portal."}).waitFor();
     await page.goForward();
-    await page.getByRole('heading', {name:'Better Client Portals for Forex Brokers.'}).waitFor();
+    await page.getByRole('heading', {name:'Stop Losing Traders Between Sign-Up and First Deposit'}).waitFor();
     assert.equal(await page.evaluate(() => window.__navigationMarker), 'same-document');
     await page.getByRole('link',{name:'View Our Process'}).click();
     await page.waitForURL('**/#process');

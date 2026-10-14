@@ -28,7 +28,7 @@
 .menuToggle, .mobileNav { display: none; }
 .hero { position: relative; isolation: isolate; text-align: center; padding: 40px 24px 56px; border-bottom: 1px solid var(--line); }
 .hero::before { content: ''; position: absolute; z-index: -1; inset: 55% 0 0; background: radial-gradient(ellipse at 50% 130%, #d7f87112, transparent 65%); pointer-events: none; }
-.heroFrame { position: relative; max-width: 850px; margin-inline: auto; padding: 34px 25px 36px; border: 1px solid #ffffff10; }
+.heroFrame { position: relative; max-width: 1120px; margin-inline: auto; padding: 34px 25px 36px; border: 1px solid #ffffff10; }
 .heroFrame::before, .heroFrame::after { content: ''; position: absolute; width: 5px; height: 5px; background: #d7f8719e; top: -3px; }
 .heroFrame::before { left: -3px; }
 .heroFrame::after { right: -3px; }
