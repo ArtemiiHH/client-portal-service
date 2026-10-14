@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ArrowUpRight, ArrowRight, ArrowDown, CheckCircle, List, X, MagnifyingGlass, Stack, MapTrifold, CalendarBlank, EnvelopeSimple, Phone, ChatCircle, ClipboardText } from '@phosphor-icons/react';
 import { siteConfig, safeUrl, safeEmail, safePhone } from './siteConfig';
 import s from './App.module.css';
+import { usePageNavigation } from './usePageNavigation';
 
 const nav = [['Home', '/'], ['About', '/about'], ['Contact', '/contact']];
 const steps = [
@@ -28,7 +29,7 @@ function Header({ path }) {
   return <header className={s.header}><div className={s.navBar}><Brand /><nav className={s.desktopNav} aria-label="Main navigation">{nav.map(([label, id]) => <a key={id} href={id} aria-current={path === id ? 'page' : undefined}>{label}</a>)}</nav><Button compact className={s.navCta}>Book a Call</Button><button className={s.menuToggle} aria-label={open ? 'Close menu' : 'Open menu'} aria-expanded={open} aria-controls="mobile-menu" onClick={() => setOpen(!open)}>{open ? <X size={24} /> : <List size={24} />}</button></div>{open && <nav id="mobile-menu" className={s.mobileNav} aria-label="Mobile navigation">{nav.map(([label, id]) => <a key={id} href={id} aria-current={path === id ? 'page' : undefined} onClick={() => setOpen(false)}>{label}<ArrowUpRight size={18} aria-hidden="true" /></a>)}<Button compact onClick={() => setOpen(false)}>Book a Call</Button></nav>}</header>;
 }
 function Hero() {
-  return <section className={s.hero} aria-labelledby="hero-title"><div className={s.heroFrame}><p className={s.eyebrow}>UX CONSULTING FOR FOREX &amp; CFD BROKERS</p><h1 id="hero-title">Better Client Portals<br />for <span>Forex Brokers.</span></h1><p className={s.heroCopy}>We audit your client portal, identify usability issues, and deliver a prioritized improvement plan your product and development teams can execute.</p></div><div className={s.heroActions}><Button /><a className={s.textLink} href="/#process">View Our Process <ArrowDown size={16} aria-hidden="true" /></a></div><ul className={s.trustRow}><li>Fixed project pricing</li><li>2–3 week delivery</li><li>Built for brokers</li></ul></section>;
+  return <section className={s.hero} aria-labelledby="hero-title"><p className={s.availabilityTag}><span className={s.availabilityDot} aria-hidden="true" />{siteConfig.availabilityMessage}</p><div className={s.heroFrame}><p className={s.eyebrow}>UX CONSULTING FOR FOREX &amp; CFD BROKERS</p><h1 id="hero-title">Better Client Portals<br />for <span>Forex Brokers.</span></h1><p className={s.heroCopy}>We audit your client portal, identify usability issues, and deliver a prioritized improvement plan your product and development teams can execute.</p></div><div className={s.heroActions}><Button /><a className={s.textLink} href="/#process">View Our Process <ArrowDown size={16} aria-hidden="true" /></a></div><ul className={s.trustRow}><li>Fixed project pricing</li><li>2–3 week delivery</li><li>Built for brokers</li></ul></section>;
 }
 function Process() {
   return <section className={`${s.section} ${s.process}`} id="process" aria-labelledby="process-title"><h2 id="process-title">How BrokerUX Works</h2><div className={s.processGrid}>{steps.map(([Icon, title, text], i) => <article className={s.glassCard} key={title}><div className={s.cardTop}><span className={s.stepNumber}>0{i + 1}</span><Icon size={25} aria-hidden="true" /></div><h3>{title}</h3><p>{text}</p></article>)}</div><p className={s.reassurance}>Everything is designed to help your existing product, design, and development teams move forward — without replacing them.</p></section>;
@@ -81,16 +82,23 @@ function ContactPage() {
 }
 const pageTitles = { '/': 'BrokerUX | Audit & Improvement Roadmap', '/about': 'About Us | BrokerUX', '/contact': 'Contact | BrokerUX' };
 export default function App({ path = typeof window === 'undefined' ? '/' : window.location.pathname }) {
-  const route = path.replace(/\/$/, '') || '/';
+  const { location, navigate } = usePageNavigation(path);
+  const route = location.pathname.replace(/\/$/, '') || '/';
   useEffect(() => {
     document.title = pageTitles[route] || pageTitles['/'];
-    if (!window.location.hash) return;
     const frame = requestAnimationFrame(() => {
-      const target = document.getElementById(window.location.hash.slice(1));
-      target?.scrollIntoView();
-      if (target?.hasAttribute('tabindex')) target.focus({ preventScroll: true });
+      let targetId = location.hash.slice(1);
+      try { targetId = decodeURIComponent(targetId); } catch { /* Keep malformed hashes inert. */ }
+      const target = targetId ? document.getElementById(targetId) : null;
+      if (target) {
+        target.scrollIntoView();
+        if (target.hasAttribute('tabindex')) target.focus({ preventScroll: true });
+      } else if (location.revision > 0) {
+        window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+        document.getElementById('main')?.focus({ preventScroll: true });
+      }
     });
     return () => cancelAnimationFrame(frame);
-  }, [route]);
-  return <div className={s.page} id="top"><a className={s.skipLink} href="#main">Skip to content</a><Header path={route} /><main id="main">{route === '/about' ? <AboutPage /> : route === '/contact' ? <ContactPage /> : <HomePage />}</main><Footer /></div>;
+  }, [route, location.hash, location.revision]);
+  return <div className={s.page} id="top" onClick={navigate}><a className={s.skipLink} href="#main">Skip to content</a><Header key={route} path={route} /><main id="main" tabIndex={-1}>{route === '/about' ? <AboutPage /> : route === '/contact' ? <ContactPage /> : <HomePage />}</main><Footer /></div>;
 }

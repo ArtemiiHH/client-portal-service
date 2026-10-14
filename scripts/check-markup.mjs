@@ -5,6 +5,16 @@ import assert from 'node:assert/strict';
 const server = await createServer({ server: { middlewareMode: true, hmr: false, ws: false }, appType: 'custom' });
 try {
   const { default: App } = await server.ssrLoadModule('/src/App.jsx');
+  const { internalDestination } = await server.ssrLoadModule('/src/usePageNavigation.js');
+  const currentHref = 'http://localhost:5173/';
+  const anchor = (href, options = {}) => ({href, target: '', hasAttribute: () => false, relList: {contains: () => false}, ...options});
+  const click = {button: 0};
+  for (const href of ['/about', '/contact#booking', '/#process']) assert(internalDestination(anchor(href), click, currentHref));
+  for (const href of ['https://external.test/about', 'mailto:hello@brokerux.test', 'tel:+35799123456', '/unknown']) assert.equal(internalDestination(anchor(href), click, currentHref), null);
+  for (const modifier of ['metaKey', 'ctrlKey', 'shiftKey', 'altKey', 'defaultPrevented']) assert.equal(internalDestination(anchor('/about'), {...click, [modifier]: true}, currentHref), null);
+  assert.equal(internalDestination(anchor('/about', {target: '_blank'}), click, currentHref), null);
+  assert.equal(internalDestination(anchor('/about', {hasAttribute: name => name === 'download'}), click, currentHref), null);
+  assert.equal(internalDestination(anchor('/about'), {button: 1}, currentHref), null);
   const { siteConfig, safePhone } = await server.ssrLoadModule('/src/siteConfig.js');
   const render = path => renderToStaticMarkup(createElement(App, { path }));
   for (const path of ['/', '/about', '/contact']) {

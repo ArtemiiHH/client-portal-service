@@ -18,7 +18,7 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL printed by Vite. Native page links select React content from the URL pathname. Direct `/about`, `/contact`, and `/#pricing` links work with Vite's HTML fallback.
+Open the local URL printed by Vite. Internal links use client-side History API navigation to switch React pages without reloading the document. Back/forward navigation, section anchors, and modified clicks for new tabs are supported. Direct `/about`, `/contact`, and `/#pricing` links work with Vite's HTML fallback.
 
 ## Configuration
 

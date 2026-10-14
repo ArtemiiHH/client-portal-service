@@ -51,6 +51,17 @@ try {
       report.push({route, name, width, height, ...dimensions, accessibilityViolations:axe.violations.length});
     }
     await page.goto(new URL('/',base).href, {waitUntil:'networkidle'});
+    await page.evaluate(() => { window.__navigationMarker = 'same-document'; });
+    for (const [label, route] of [['About','/about'], ['Contact','/contact'], ['Home','/']]) {
+      await page.locator('footer').getByRole('link', {name:label,exact:true}).click();
+      await page.waitForURL(url => url.pathname === route);
+      assert.equal(await page.evaluate(() => window.__navigationMarker), 'same-document', 'internal navigation must not reload');
+    }
+    await page.goBack();
+    await page.getByRole('heading', {name:"Let's Talk About Your Client Portal."}).waitFor();
+    await page.goForward();
+    await page.getByRole('heading', {name:'Better Client Portals for Forex Brokers.'}).waitFor();
+    assert.equal(await page.evaluate(() => window.__navigationMarker), 'same-document');
     await page.getByRole('link',{name:'View Our Process'}).click();
     await page.waitForURL('**/#process');
     await page.locator('#contact').getByRole('link',{name:'Book a Discovery Call'}).click();

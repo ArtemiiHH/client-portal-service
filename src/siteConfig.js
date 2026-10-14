@@ -1,6 +1,8 @@
 /** Add real contact details before publishing. No invented identity or destination. */
 export const siteConfig = {
   brand: 'BrokerUX',
+  // Owner-maintained capacity message; update as monthly availability changes.
+  availabilityMessage: '3 of 5 spots this month already booked',
   // Reserved for a future scheduler; not used by the placeholder implementation.
   bookingUrl: import.meta.env.VITE_BOOKING_URL || '',
   // Fictional review cards appear in development only, never in a production build.

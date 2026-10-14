@@ -26,7 +26,7 @@
 .compact { min-height: 42px; padding: 5px 6px 5px 18px; gap: 15px; font-size: var(--font-body); background: var(--text); }
 .compact .buttonIcon { width: 30px; height: 30px; }
 .menuToggle, .mobileNav { display: none; }
-.hero { position: relative; isolation: isolate; text-align: center; padding: 78px 24px 56px; border-bottom: 1px solid var(--line); }
+.hero { position: relative; isolation: isolate; text-align: center; padding: 40px 24px 56px; border-bottom: 1px solid var(--line); }
 .hero::before { content: ''; position: absolute; z-index: -1; inset: 55% 0 0; background: radial-gradient(ellipse at 50% 130%, #d7f87112, transparent 65%); pointer-events: none; }
 .heroFrame { position: relative; max-width: 850px; margin-inline: auto; padding: 34px 25px 36px; border: 1px solid #ffffff10; }
 .heroFrame::before, .heroFrame::after { content: ''; position: absolute; width: 5px; height: 5px; background: #d7f8719e; top: -3px; }
@@ -92,7 +92,7 @@
   .mobileNav { display: grid; gap: 8px; padding: 8px 20px 22px; border-top: 1px solid var(--line); }
   .mobileNav > a:not(.button) { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; font-size: var(--font-body); }
   .mobileNav .button { justify-self: start; margin-top: 8px; }
-  .hero { padding: 42px 20px 36px; }
+  .hero { padding: 24px 20px 36px; }
   .heroFrame { padding: 26px 12px 28px; }
   .hero .eyebrow { font-size: var(--font-small); letter-spacing: .08em; }
   .hero h1 { font-size: clamp(35px, 8vw, 55px); margin: 20px 0; }
@@ -173,3 +173,7 @@
   .bookingCard { padding: 26px 22px; scroll-margin-top: 92px; }
   .contactInvitation h2 { margin-top: 28px; }
 }
+
+.availabilityTag { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; margin-bottom: 20px; padding: 6px 12px; border: 1px solid #d7f87140; border-radius: 999px; background: #d7f87108; color: var(--text); font-size: .75rem; line-height: 1.5; text-wrap: balance; }
+.availabilityDot { width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: var(--accent); }
+@media (max-width: 767px) { .availabilityTag { padding: 6px 12px; margin-bottom: 16px; } }
