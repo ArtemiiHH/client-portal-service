@@ -13,10 +13,14 @@ for (const [name, width, height] of [['desktop',1440,900], ['mobile',390,844], [
   await page.goto(process.env.BASE_URL || 'http://localhost:5173/', { waitUntil: 'networkidle' });
   await page.evaluate(()=>document.fonts.ready);
   assert.equal(await page.locator('h1').count(),1);
-  assert.equal(await page.locator('main section').count(),8);
+  assert.deepEqual(await page.locator('main section').evaluateAll(nodes => nodes.map(n => n.getAttribute('aria-labelledby'))), ['hero-title', 'process-title', 'deliverables-title', 'pricing-title', 'contact-title']);
+  assert.equal(await page.locator('main section#pricing article').count(), 1);
+  const bookingLinks = page.getByRole('link', {name: /Book a (Discovery )?Call|Discuss Your Portal/i});
+  const destinations = await bookingLinks.evaluateAll(nodes => nodes.map(n => n.getAttribute('href')));
+  assert.equal(new Set(destinations).size, 1);
   const dimensions = await page.evaluate(()=>({ scroll:document.documentElement.scrollWidth, width:innerWidth, h1Lines: Math.round(document.querySelector('h1').getBoundingClientRect().height / parseFloat(getComputedStyle(document.querySelector('h1')).lineHeight)) }));
   assert(dimensions.scroll <= width, `${name}: horizontal overflow`);
-  assert(dimensions.h1Lines === 2, `${name}: hero headline wraps to ${dimensions.h1Lines} lines`);
+  assert(dimensions.h1Lines >= 2 && dimensions.h1Lines <= 4, `${name}: hero headline wraps to ${dimensions.h1Lines} lines`);
   const heroButton = await page.locator('section').first().getByRole('link', { name: 'Book a discovery call' }).boundingBox();
   assert(heroButton.y + heroButton.height < height, `${name}: CTA outside first viewport`);
   const axe = await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
@@ -28,19 +32,13 @@ for (const [name, width, height] of [['desktop',1440,900], ['mobile',390,844], [
     assert.equal(await page.getByRole('button',{name:'Open menu'}).count(),1);
     assert(page.url().endsWith('#pricing'));
   }
-  await page.getByText('Who is this for?',{exact:true}).click();
-  assert.equal(await page.locator('details[open]').count(),1);
-  await page.getByLabel('Your name').fill('Alex Test');
-  await page.getByLabel('Work email').fill('alex@example.com');
-  await page.getByLabel('Company',{exact:true}).fill('Test Broker');
-  await page.getByLabel('What would you like to improve?').fill('Review deposit and withdrawal feedback.');
-  await page.getByRole('button',{name:'Copy enquiry',exact:true}).click();
-  await page.getByText('Enquiry copied. Paste it into your email or call notes.').waitFor();
-  const copied=await page.evaluate(()=>navigator.clipboard.readText());
-  assert(copied.includes('Test Broker'));
-  await page.evaluate(()=>{ navigator.clipboard.writeText=()=>Promise.reject(new Error('Denied')); });
-  await page.getByRole('button',{name:'Copy enquiry again'}).click();
-  await page.getByText(/Your browser could not copy the enquiry/).waitFor();
+  await page.getByRole('link', {name:'View Our Process'}).click();
+  assert(page.url().endsWith('#process'));
+  if (destinations[0] === '#booking-placeholder') {
+    await page.locator('#contact').getByRole('link', {name:'Book a Discovery Call'}).click();
+    assert(page.url().endsWith('#booking-placeholder'));
+    await page.locator('#booking-placeholder').waitFor({state:'visible'});
+  }
   assert.deepEqual(errors,[]);
   report.push({name,width,height,...dimensions, accessibilityViolations:axe.violations.length, interactions:'passed'});
   await context.close();

@@ -1,9 +1,9 @@
 /** Add real contact details before publishing. No invented identity or destination. */
 export const siteConfig = {
-  brand: 'Broker Portal UX',
-  consultantName: import.meta.env.VITE_CONSULTANT_NAME || '',
+  brand: 'BrokerUX',
   bookingUrl: import.meta.env.VITE_BOOKING_URL || '',
   contactEmail: import.meta.env.VITE_CONTACT_EMAIL || '',
+  privacyUrl: import.meta.env.VITE_PRIVACY_URL || '',
   linkedInUrl: import.meta.env.VITE_LINKEDIN_URL || '',
 };
 export function safeUrl(value) {

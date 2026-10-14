@@ -1,11 +1,7 @@
-# Finish review
+# BrokerUX restructure review
 
-Disposition: ship.
+Code-review disposition: ship. The independent reviewer verified prescribed five-section structure and copy, one €2,500 fixed package, common booking destination, honest placeholders, theme, heading semantics, keyboard focus, mobile stacking, and reduced-motion/transparency support. The mobile-to-desktop menu visibility issue and invalid corner shadow were corrected and confirmed by the reviewer.
 
-Independent Impeccable finish reviewer reviewed the supplied brief, pinned reference, direction contract, source, full-page desktop and mobile screenshots, and browser-check evidence. No material fixes within the implemented scope. Contact identity/destination still require real values before lead-capture launch.
+Validation: production build, React server-rendered markup assertions, and git diff whitespace checks passed.
 
-A subsequent Lighthouse finding on the Brand links' accessible name was fixed by removing the redundant aria-label and adding explicit text whitespace. The reviewer scored this correction resolved, confirmed valid final screenshots and no visual regression, and returned ship at the correction's scope.
-
-Final production verification: widths 320/390/768/1024/1440; no horizontal overflow; two-line hero; primary CTA visible; menu, FAQ, clipboard success/error pass; zero automated axe WCAG A/AA violations. Lighthouse simulated mobile: performance 98, accessibility 100, best practices 100, SEO 100; LCP 2.0s, total blocking time 10ms, CLS 0.005. Laboratory measurements are not field Core Web Vitals.
-
-The build is code-led from the explicit user-pinned reference; no new image comp was represented as approved. Original generated hero material carries provenance. Impeccable detector ran once and returned [].
+Browser verification did not run successfully. Installed Playwright's default browser is unavailable; existing Chromium fails to load libnspr4.so. Desktop/mobile screenshots and check-results.json from the previous design are stale and are not evidence for this restructure. Visual fidelity, actual wrapping/overflow, runtime interactions, and axe accessibility checks remain unverified. scripts/check.mjs now checks the new structure and interactions when a working browser is available.

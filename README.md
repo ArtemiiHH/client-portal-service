@@ -1,8 +1,8 @@
-# Broker Portal UX consultancy website
+# BrokerUX consultancy website
 
-A complete one-page React/Vite website with CSS Modules, based on the supplied dark glass/orange reference. Includes the hero, portal problems, deliverables, discovery/audit/handover process, pricing, consultant introduction, FAQ, discovery-call contact, and footer.
+Single-page React/Vite website following `BrokerUX-Website-Restructure.md`: Hero, How It Works, What You Get, Pricing, and Final Call to Action, plus minimal header and footer. The supplied reference informs the centered typography, fine borders, pill buttons, and restrained dark surfaces; the brief supplies the lime palette and exact copy.
 
-## Requirements and setup
+## Setup
 
 Node.js 22.12+ (or 20.19+) and npm.
 
@@ -12,24 +12,18 @@ cp .env.example .env.local
 npm run dev
 ```
 
-Open the local URL printed by Vite (normally http://localhost:5173).
+## Configuration
 
-## Contact configuration
-
-Set the following in `.env.local`, then restart Vite or rebuild:
+Set real public destinations in `.env.local`, then restart Vite or rebuild:
 
 ```dotenv
-VITE_CONSULTANT_NAME=Your real name
-VITE_BOOKING_URL=https://your-real-booking-page.example
-VITE_CONTACT_EMAIL=your-real-email@example.com
-VITE_LINKEDIN_URL=https://www.linkedin.com/in/your-real-profile
+VITE_BOOKING_URL=
+VITE_CONTACT_EMAIL=
+VITE_LINKEDIN_URL=
+VITE_PRIVACY_URL=
 ```
 
-The example values above are documentation placeholders; replace them with actual destinations. These values are public client-side configuration, so never put secrets here.
-
-The discovery-call action opens the configured booking URL. If there is no valid booking URL, it opens an email when supplied. Until neither is supplied, the page explicitly shows that contact details are coming soon. The enquiry form validates its fields and copies a brief to the clipboard; it never submits or stores personal data. It has loading, success, and clipboard failure states. A live lead-capture launch requires your real contact destination.
-
-The name and LinkedIn profile appear only when configured. No credentials, customer logos, portrait, or testimonials have been invented.
+All four call buttons use the same validated booking URL. Without one, they scroll to a clearly marked booking placeholder. Contact email and LinkedIn appear only when configured. An unconfigured privacy destination is labeled coming soon rather than linking to an invented policy. Environment values are public: do not include secrets.
 
 ## Production
 
@@ -38,7 +32,7 @@ npm run build
 npm run preview
 ```
 
-Deploy the contents of `dist/` to a static host. The default Vite base path is `/`; for a subdirectory deployment, set `base` in `vite.config.js` before building. Configure public environment values in your host's build environment. This project has no server or database.
+Deploy `dist/` to a static host. The default base path is `/`. There is no backend, form, or personal-data storage.
 
 ## Browser verification
 
@@ -49,24 +43,13 @@ npm run dev
 npm run check
 ```
 
-`npm run check` uses Chromium and checks 320, 390, 768, 1024, and 1440 pixel widths, horizontal overflow, hero line count, first-viewport CTA, WCAG A/AA axe findings, mobile menu anchors, FAQ disclosure, clipboard success/error, and browser exceptions. Screenshots and results go to `.impeccable/review/`. To use an already installed Chromium, set `CHROMIUM_PATH` to its executable.
+Checks cover 320, 390, 768, 1024, and 1440 pixel widths, section order, single package, shared booking destinations, horizontal overflow, headline wrapping, first-viewport CTA, WCAG A/AA axe findings, mobile navigation, process links, booking placeholder, and browser exceptions. Screenshots and results are written to `.impeccable/review/`. Set `CHROMIUM_PATH` to use an existing browser executable.
 
-For production Lighthouse:
+## Structure
 
-```bash
-npm run preview
-# In another terminal:
-npx lighthouse http://localhost:4173 --chrome-flags="--headless --no-sandbox"
-```
+- `src/App.jsx`: reusable navigation, buttons, brand, and five sections.
+- `src/App.module.css`: visual tokens, responsive layouts, interaction states, and reduced-motion/transparency support.
+- `src/siteConfig.js`: contact configuration and destination validation.
+- `PRODUCT.md`, `DESIGN.md`, `.impeccable/design.json`, and `.impeccable/surface.md`: product and design context.
 
-## Project structure
-
-- `src/App.jsx`: reusable sections, navigation, FAQ, and contact interactions.
-- `src/App.module.css`: visual tokens, component styles, and responsive behavior.
-- `src/siteConfig.js`: public identity/contact configuration and URL validation.
-- `public/images/glass-study.webp`: original AI-generated supporting image, compressed to about 96 KB. Created with the built-in imagegen tool; exact prompt is in `glass-study.prompt.txt` and its provenance sidecar. Original PNG retained under `.impeccable/assets/`.
-- `PRODUCT.md`: factual service context and open identity details.
-- `DESIGN.md` and `.impeccable/design.json`: implemented design system.
-- `.impeccable/surface.md`: development-only design direction contract.
-
-The page uses the dark theme explicitly requested in INSTRUCTIONS.md. Reduced motion and reduced transparency preferences are supported. Fonts are locally bundled from Fontsource Manrope; icons use one Phosphor family. Pricing and boundaries follow the supplied service description.
+Fonts are bundled locally from Fontsource Manrope. Icons use Phosphor. No fictitious clients, testimonials, credentials, or sample client work are included. Legacy image assets remain archived and are not loaded by the page.
