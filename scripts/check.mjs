@@ -58,7 +58,7 @@ try {
       assert.equal(await page.evaluate(() => window.__navigationMarker), 'same-document', 'internal navigation must not reload');
     }
     await page.goBack();
-    await page.getByRole('heading', {name:"Let's Talk About Your Client Portal."}).waitFor();
+    await page.getByRole('heading', {name:"Find What's Holding Your Brokerage Back. Risk-Free."}).waitFor();
     await page.goForward();
     await page.getByRole('heading', {name:'Stop Losing Traders Between Sign-Up and First Deposit'}).waitFor();
     assert.equal(await page.evaluate(() => window.__navigationMarker), 'same-document');
