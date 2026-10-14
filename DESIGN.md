@@ -16,6 +16,7 @@ colors:
   card-copy: "#a4adb8"
   badge-text: "#c1c8d0"
   inclusion-text: "#c3c9d1"
+  disabled-action: "#343e25"
 typography:
   display:
     fontFamily: "Manrope, sans-serif"
@@ -37,24 +38,26 @@ typography:
     letterSpacing: "-.025em"
   body:
     fontFamily: "Manrope, sans-serif"
-    fontSize: "13px"
+    fontSize: "16px"
     fontWeight: 400
     lineHeight: "1.85"
   label:
     fontFamily: "Manrope, sans-serif"
-    fontSize: "10px"
+    fontSize: "14px"
     fontWeight: 600
     lineHeight: "1.6"
     letterSpacing: ".12em"
   button:
     fontFamily: "Manrope, sans-serif"
-    fontSize: "13px"
+    fontSize: "16px"
     fontWeight: 700
 rounded:
   card: "14px"
   price-card: "16px"
   pill: "999px"
   circle: "50%"
+  booking-frame: "12px"
+  skip-link: "8px"
 spacing:
   grid-gap: "16px"
   card-padding: "28px"
@@ -95,7 +98,7 @@ components:
 
 **Creative North Star: Restrained dark consultancy.**
 
-BrokerUX uses a centered, typographic presentation with near-black foundations, charcoal translucent surfaces, fine borders, and a soft lime accent. The user-authorized redesign replaces the former orange visual system with the palette in `BrokerUX-Website-Restructure.md`. Manrope carries the whole hierarchy; the visual weight comes from scale and spacing rather than illustrations.
+BrokerUX uses a centered, typographic presentation with near-black foundations, charcoal translucent surfaces, fine borders, and a soft lime accent. Home, About, and Contact extend the approved palette in `BrokerUX-Website-Restructure.md` without replacing the original dark design world. Manrope carries the whole hierarchy; the visual weight comes from scale and spacing rather than illustrations.
 
 Key characteristics: centered headlines, compact explanatory copy, lightly glassy panels, pill actions with circular arrow wells, and precise dividers. This document describes the current source implementation in `src/App.jsx` and `src/App.module.css`; it does not certify rendered appearance.
 
@@ -107,15 +110,15 @@ Use lime for primary actions, process icons, check marks, focus outlines, and sm
 
 ## Typography
 
-Manrope with a sans-serif fallback is used throughout. Headlines are medium weight with tight tracking and balanced wrapping; labels are compact and spaced.
+Manrope with a sans-serif fallback is used throughout. The base body size is 16px (`1rem`) with a 1.6 default line height. Shared CSS tokens standardize readable text: `--font-body: 1rem` for navigation, links, actions and body copy; `--font-small: .875rem` (14px) for labels, captions, badges and supporting notes; `--font-title: 1.25rem` (20px) for small subheadings. These sizes are retained on mobile rather than shrinking body or link text.
 
-The hero display uses the frontmatter display role and changes to `clamp(35px, 8vw, 55px)` below 768px. Section headings use the headline role. The final CTA uses `clamp(40px, 4.8vw, 64px)` on desktop and `clamp(36px, 9vw, 52px)` on mobile. Process titles are 21px at desktop, 19px at the intermediate breakpoint, and 22px on mobile. Deliverable titles are 17px. Hero and contact paragraphs are 14px; process and deliverable descriptions are 13px. The hero copy is limited to 585px. Prices use tabular numerals at 52px, dropping to 48px on mobile.
+Display and section headings retain the approved responsive scales and balanced wrapping. Hero display is `clamp(44px, 5.6vw, 78px)`, changing to `clamp(35px, 8vw, 55px)` below 768px. Section headings use `clamp(32px, 3.5vw, 46px)`. Prices remain 52px desktop / 48px mobile. Cards preserve their larger headline hierarchy.
 
 ## Layout
 
 Shared containers use `min(1120px, calc(100% - 96px))`. At 1023px and below, horizontal gutters become 32px; at 767px and below they become 20px. Standard sections have 86px vertical padding, reduced to 58px on mobile; hero and final CTA use their own spacing.
 
-The hero has a centered bordered text frame up to 850px wide, followed by its actions and a compact scope row. Process cards use a three-column grid with 16px gaps. Deliverables place a heading beside a ruled list using `.75fr 1.65fr` columns. Pricing uses a single two-column card with a full-width scope note. All three layouts become one column below 768px. Header height changes from 88px to 72px; desktop links and CTA give way to a 44px mobile menu control and expanded navigation. The footer wraps on mobile.
+The hero has a centered bordered text frame up to 850px wide, followed by its actions and a compact scope row. Process cards use a three-column grid with 16px gaps. Deliverables place a heading beside a ruled list using `.75fr 1.65fr` columns. Pricing uses a single two-column card with a full-width scope note. All three layouts become one column below 768px. Header height changes from 88px to 72px; desktop links and CTA give way to a 44px mobile menu control and expanded navigation. The footer wraps on mobile. About reuses the framed hero and glass cards in a 2×2 approach grid with 16px gaps and 30px card padding; the two sample feedback cards share a two-column grid. Contact uses equal columns, a 64px gap, and 76px/86px vertical padding. The gap reduces to 32px at the intermediate breakpoint. All inner-page grids become one column below 768px, with the invitation above the booking card.
 
 ## Elevation & Depth
 
@@ -123,11 +126,11 @@ Depth comes from translucent charcoal panels, subtle gradients, hairline borders
 
 ## Shapes
 
-Process panels use 14px corners; the pricing panel uses 16px. Buttons and the fixed-scope badge use pill shapes. Button arrow wells and the mobile menu control are circular. The hero frame is rectangular with small lime markers at its upper corners. Dividers remain thin and low contrast.
+Process panels use 14px corners; the pricing panel uses 16px. Buttons and the fixed-scope badge use pill shapes. Button arrow wells and the mobile menu control are circular. The hero frame is rectangular with small lime markers at its upper corners. The booking frame uses the booking-frame radius and a dashed border; the skip link uses the skip-link radius. Dividers remain thin and low contrast.
 
 ## Components
 
-**Primary action:** lime pill, at least 52px tall, 13px bold label, and a 36px circular arrow well. Hover lightens the background and moves the action up 2px; active returns it to rest. The compact header variant is off-white, at least 42px tall, with a 30px arrow well and 12px label.
+**Primary action:** lime pill, at least 52px tall, 16px bold label, and a 36px circular arrow well. Hover lightens the background and moves the action up 2px; active returns it to rest. The compact header variant is off-white, at least 42px tall, with a 30px arrow well and 16px label.
 
 **Process card:** numbered icon header, 28px padding, 14px corners, translucent charcoal, white hairline border, and concise title/body. Mobile padding is 24px.
 
@@ -135,7 +138,11 @@ Process panels use 14px corners; the pricing panel uses 16px. Buttons and the fi
 
 **Pricing card:** 40px desktop padding, 16px corners, translucent lime border, subdued gradient, package summary beside inclusions, then a ruled scope note. Padding becomes 32px at the intermediate breakpoint and 26px 22px on mobile.
 
-**Navigation:** sticky translucent header, quiet gray links that turn lime on hover, explicit mobile open/close control, Escape dismissal, and anchor destinations. Links close the mobile menu when followed.
+**Navigation:** sticky translucent header, quiet gray links that turn lime on hover, explicit mobile open/close control, Escape dismissal, and native route anchors for Home, About, and Contact. Current-page links turn lime. Links close the mobile menu when followed.
+
+**Booking placeholder:** existing glass material, 34px desktop padding (28px intermediate; 26px 22px mobile), dashed framed calendar region, visible availability status, and a disabled full-width action. The disabled-action shade is intentional: it dims the pill while retaining headline-highlight text and suppressing hover lift. The `#booking` region supports anchor scrolling and keyboard focus. It is a static integration slot, not an active scheduler.
+
+**Illustrative feedback:** two glass cards with conspicuous lime sample labels, restrained quote typography, and fictional attribution. They appear in development only and are absent from production.
 
 **Focus and motion:** interactive elements receive a 2px lime outline with 6px offset. A visible-on-focus skip link targets the main content. Color/background and button transform transitions last 0.2s. Reduced-motion mode removes transitions and smooth scrolling. No scroll reveal animation is currently implemented.
 

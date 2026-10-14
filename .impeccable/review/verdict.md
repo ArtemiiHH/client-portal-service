@@ -1,7 +1,9 @@
-# BrokerUX restructure review
+# BrokerUX three-page extension review
 
-Code-review disposition: ship. The independent reviewer verified prescribed five-section structure and copy, one €2,500 fixed package, common booking destination, honest placeholders, theme, heading semantics, keyboard focus, mobile stacking, and reduced-motion/transparency support. The mobile-to-desktop menu visibility issue and invalid corner shadow were corrected and confirmed by the reviewer.
+Disposition: ship within independent code-only review scope.
 
-Validation: production build, React server-rendered markup assertions, and git diff whitespace checks passed.
+Home retains exactly five approved sections. About includes the prescribed four-stage approach and conspicuously fictional testimonials in development; production hides the demo section. Contact uses the prescribed two-column composition, configurable real contact details, and a disabled static BookingPlaceholder. Call links consistently target /contact#booking, with no scheduler integration. Shared navigation, semantic headings, keyboard focus, and responsive/reduced-motion CSS are present.
 
-Browser verification did not run successfully. Installed Playwright's default browser is unavailable; existing Chromium fails to load libnspr4.so. Desktop/mobile screenshots and check-results.json from the previous design are stale and are not evidence for this restructure. Visual fidelity, actual wrapping/overflow, runtime interactions, and axe accessibility checks remain unverified. scripts/check.mjs now checks the new structure and interactions when a working browser is available.
+The reviewer requested correction of obsolete README guidance. README now documents all routes, index.html hosting fallback, reserved/inactive booking configuration, phone links, conditional privacy, and development-only samples. The reviewer confirmed the correction.
+
+Production build and three-route rendered-markup assertions pass. Browser tests cannot run: the expected Playwright Chromium is unavailable, and the previously installed executable lacks libnspr4.so. No current screenshots, runtime-interaction checks, computed contrast, or rendered overflow verification are claimed. Existing screenshots and previous browser reports are stale. scripts/check.mjs covers the three-page implementation when a working browser is provided.

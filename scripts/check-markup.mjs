@@ -1,0 +1,44 @@
+import { createServer } from 'vite';
+import { renderToStaticMarkup } from 'react-dom/server';
+import { createElement } from 'react';
+import assert from 'node:assert/strict';
+const server = await createServer({ server: { middlewareMode: true, hmr: false, ws: false }, appType: 'custom' });
+try {
+  const { default: App } = await server.ssrLoadModule('/src/App.jsx');
+  const { siteConfig, safePhone } = await server.ssrLoadModule('/src/siteConfig.js');
+  const render = path => renderToStaticMarkup(createElement(App, { path }));
+  for (const path of ['/', '/about', '/contact']) {
+    const html = render(path);
+    assert.equal((html.match(/<h1 /g) || []).length, 1, `${path}: one H1`);
+    for (const route of ['/', '/about', '/contact']) assert(html.includes(`href="${route}"`), `${path}: shared navigation ${route}`);
+    assert(!html.includes('Privacy Policy'), `${path}: unconfigured privacy hidden`);
+    assert(!html.includes('mailto:') && !html.includes('tel:'), `${path}: placeholders inactive`);
+    const callHrefs = [...html.matchAll(/<a [^>]*href="([^"]+)"[^>]*><span>(?:Book a (?:Discovery )?Call|Discuss Your Portal)<\/span>/g)].map(match => match[1]);
+    assert(callHrefs.length > 0);
+    assert(callHrefs.every(href => href === '/contact#booking'), `${path}: all call links go to booking placeholder`);
+  }
+  const home = render('/');
+  assert.equal((home.match(/<section /g) || []).length, 5);
+  const homeHeadings = [...home.matchAll(/<section [^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]);
+  assert.deepEqual(homeHeadings, ['hero-title', 'process-title', 'deliverables-title', 'pricing-title', 'contact-title']);
+  assert.equal((home.match(/€2,500/g) || []).length, 1);
+  assert(!home.includes('booking-placeholder'));
+  const about = render('/about');
+  for (const copy of ['Discovery', 'Audit &amp; Research', 'Recommendations', 'Delivery']) assert(about.includes(copy));
+  assert.equal((about.match(/SAMPLE \/ NOT A REAL TESTIMONIAL/g) || []).length, 2);
+  siteConfig.showDemoTestimonials = false;
+  assert(!render('/about').includes('What Clients Say'), 'production setting hides whole demo section');
+  const contact = render('/contact');
+  for (const copy of ['Your existing client portal', 'The workflows that need improvement', 'Our audit process and deliverables', 'Scope, timeline, and next steps', 'id="booking"', 'Calendly integration placeholder', 'your-email@example.com', '+XXX XX XXX XXX']) assert(contact.includes(copy), copy);
+  assert(/<button[^>]*disabled=""/.test(contact), 'booking CTA disabled');
+  assert(!contact.includes('<iframe') && !contact.includes('<form') && !contact.includes('<input'));
+  siteConfig.contactEmail = 'contact@brokerux.test';
+  siteConfig.contactPhone = '+357 99 123 456';
+  const configured = render('/contact');
+  assert(configured.includes('href="mailto:contact@brokerux.test"'));
+  assert(configured.includes('href="tel:+35799123456"'));
+  assert.equal(safePhone('+XXX XX XXX XXX'), '');
+  assert.equal(safePhone('javascript:alert(1)'), '');
+  assert.equal(safePhone('+357 99 123 456'), '+35799123456');
+  console.log('PASS: three routes, approved homepage, About copy and demo visibility, static booking slot, navigation, and configured contact links.');
+} finally { await server.close(); }

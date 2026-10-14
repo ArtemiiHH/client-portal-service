@@ -23,6 +23,10 @@
       "muted": {
         "role": "neutral",
         "displayName": "Muted gray"
+      },
+      "disabled-action": {
+        "role": "neutral",
+        "displayName": "Muted olive disabled action"
       }
     },
     "typographyMeta": {
@@ -71,10 +75,12 @@
       "source": [
         "src/App.jsx",
         "src/App.module.css",
-        "BrokerUX-Website-Restructure.md"
+        "BrokerUX-Website-Restructure.md",
+        "src/siteConfig.js"
       ],
       "method": "Source extraction; no rendered screenshots or computed-style capture.",
-      "verification": "Production build and React static rendered-markup checks passed: five sections, prescribed headings, and four shared CTA destinations. Browser checks blocked by missing libnspr4.so."
+      "verification": "Production build and static rendered-markup checks passed for all three routes, the five approved Home sections, development-only sample feedback, shared call links, and disabled booking placeholder. Browser checks blocked by unavailable Chromium / missing libnspr4.so; no valid current screenshots.",
+      "advisories": "Detector warnings on contextual font sizes and corner radii are advisory; observed values are documented in DESIGN.md. #343e25 is an intentional disabled-action shade."
     }
   },
   "components": [
@@ -83,7 +89,7 @@
       "kind": "button",
       "refersTo": "button-primary",
       "description": "Discovery-call action with a circular arrow well.",
-      "html": "<a class=\"ds-button\" href=\"#discovery\">Book a Discovery Call<span class=\"ds-button-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></span></a>",
+      "html": "<a class=\"ds-button\" href=\"/contact#booking\">Book a Discovery Call<span class=\"ds-button-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></span></a>",
       "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:22px;min-height:52px;padding:7px 8px 7px 24px;background:#D7F871;color:#161e09;border:0;border-radius:999px;font:700 13px Manrope,sans-serif;text-decoration:none;transition:background .2s,transform .2s}.ds-button-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#15200412}.ds-button:hover{background:#e3ff97;transform:translateY(-2px)}.ds-button:active{transform:translateY(0)}.ds-button:focus-visible{outline:2px solid #D7F871;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}"
     },
     {
@@ -91,7 +97,7 @@
       "kind": "button",
       "refersTo": "button-nav",
       "description": "Quieter off-white action in the header.",
-      "html": "<a class=\"ds-button ds-compact\" href=\"#discovery\">Book a Call<span class=\"ds-button-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></span></a>",
+      "html": "<a class=\"ds-button ds-compact\" href=\"/contact#booking\">Book a Call<span class=\"ds-button-icon\"><svg width=\"18\" height=\"18\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" aria-hidden=\"true\"><path d=\"M4 12h16m-6-6 6 6-6 6\"/></svg></span></a>",
       "css": ".ds-button{display:inline-flex;align-items:center;justify-content:center;gap:22px;min-height:52px;padding:7px 8px 7px 24px;background:#D7F871;color:#161e09;border:0;border-radius:999px;font:700 13px Manrope,sans-serif;text-decoration:none;transition:background .2s,transform .2s}.ds-button-icon{display:grid;place-items:center;width:36px;height:36px;border-radius:50%;background:#15200412}.ds-button:hover{background:#e3ff97;transform:translateY(-2px)}.ds-button:active{transform:translateY(0)}.ds-button:focus-visible{outline:2px solid #D7F871;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-button{transition:none}}.ds-compact{min-height:42px;padding:5px 6px 5px 18px;gap:15px;font-size:12px;background:#F5F6F7}.ds-compact .ds-button-icon{width:30px;height:30px}"
     },
     {
@@ -114,8 +120,15 @@
       "name": "Navigation links",
       "kind": "nav",
       "description": "Compact quiet links with lime hover and visible keyboard focus.",
-      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"#process\">How It Works</a><a href=\"#pricing\">Pricing</a><a href=\"#contact\">Contact</a></nav>",
-      "css": ".ds-nav{display:flex;gap:32px;font:12px Manrope,sans-serif;color:#bac0c8}.ds-nav a{color:inherit;text-decoration:none;transition:color .2s}.ds-nav a:hover{color:#D7F871}.ds-nav a:focus-visible{outline:2px solid #D7F871;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-nav a{transition:none}}"
+      "html": "<nav class=\"ds-nav\" aria-label=\"Main navigation\"><a href=\"/\" aria-current=\"page\">Home</a><a href=\"/about\">About</a><a href=\"/contact\">Contact</a></nav>",
+      "css": ".ds-nav{display:flex;gap:32px;font:12px Manrope,sans-serif;color:#bac0c8}.ds-nav a{color:inherit;text-decoration:none;transition:color .2s}.ds-nav a:hover{color:#D7F871}.ds-nav a:focus-visible{outline:2px solid #D7F871;outline-offset:6px}@media(prefers-reduced-motion:reduce){.ds-nav a{transition:none}}.ds-nav a[aria-current=\"page\"]{color:#D7F871}"
+    },
+    {
+      "name": "Disabled booking action",
+      "kind": "button",
+      "description": "Static booking placeholder action; availability is stated explicitly.",
+      "html": "<button class=\"ds-booking-disabled\" type=\"button\" disabled aria-describedby=\"ds-booking-status\">Book a Discovery Call</button><p id=\"ds-booking-status\" class=\"ds-booking-status\">Booking available soon</p>",
+      "css": ".ds-booking-disabled{display:inline-flex;align-items:center;justify-content:center;width:100%;min-height:52px;padding:7px 8px 7px 24px;border:0;border-radius:999px;background:#343e25;color:#c1c8b3;font:700 13px Manrope,sans-serif;cursor:not-allowed}.ds-booking-disabled:hover,.ds-booking-disabled:active{background:#343e25;transform:none}.ds-booking-status{color:#929AA5;text-align:center;font:11px/1.8 Manrope,sans-serif;margin-top:12px}"
     }
   ],
   "narrative": {
