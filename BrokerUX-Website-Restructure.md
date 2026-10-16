@@ -6,7 +6,7 @@
 **Website type:** Three-page, premium B2B consulting website (Home, About Us, Contact)  
 **Audience:** Small to mid-sized Forex/CFD brokers, primarily Heads of Product, Product Directors, COOs, and founders. Secondary audience: Forex CRM and client portal technology providers.  
 **Primary objective:** Convert relevant visitors into discovery calls.  
-**Primary offer:** Client Portal UX Audit & Improvement Roadmap — **€2,500 fixed project fee**, approximately **2–3 weeks**.
+**Primary offer:** Client Portal UX Audit & Improvement Roadmap — **€3,000 fixed project fee**, approximately **2–3 weeks**.
 
 BrokerUX audits existing Forex/CFD client portals, identifies usability friction, and delivers prioritized, development-ready recommendations. It **supports** existing product, design, and engineering teams rather than replacing them. This is a specialized consulting engagement, **not** a SaaS product or a full portal rebuild.
 
@@ -153,7 +153,7 @@ Use **one featured pricing card only**, not a three-tier pricing table.
 **Package name:**
 > Client Portal UX Audit & Improvement Roadmap
 
-**Price:** `€2,500 / project`  
+**Price:** `€3,000 / project`  
 **Timing:** `Delivered in approximately 2–3 weeks.`
 
 **Inclusions:**
@@ -327,7 +327,7 @@ HOME (/)
   01 Hero
   02 How It Works (Audit → Prioritize → Roadmap)
   03 What You Get (deliverables + optional sample)
-  04 Pricing (one €2,500 package)
+  04 Pricing (one €3,000 package)
   05 Final CTA → /contact#booking
 
 ABOUT (/about)
@@ -355,7 +355,7 @@ SHARED FOOTER
 5. Use one primary conversion journey: visitors navigate to `/contact#booking` to discuss a call; only enable real booking after the owner connects a scheduler.
 6. The **two fictional testimonials** are *clearly labeled design-only samples*. Hide them before production unless genuinely verified feedback replaces them; never pass them off as customer statements.
 7. Do not add extra marketing sections, generic FAQ, blog, staff directory, fictional case studies, partner logos, or performance metrics.
-8. Keep the **€2,500 fixed price** and **2–3 week timeline** consistent.
+8. Keep the **€3,000 fixed price** and **2–3 week timeline** consistent.
 9. Ensure accessible color contrast, logical heading hierarchy, keyboard navigation, focus states, mobile responsiveness, and reduced-motion support.
 10. Reuse existing React.js project architecture and components where feasible. Use consistent header/footer and a single visual system. Remove obsolete sections and dead routes.
 11. Keep phone, email, and future scheduler URL in a clearly marked configuration location and do not publish dummy values as real contact details.

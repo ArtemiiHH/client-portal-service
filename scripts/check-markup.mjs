@@ -1,54 +1,164 @@
-import { createServer } from 'vite';
-import { renderToStaticMarkup } from 'react-dom/server';
-import { createElement } from 'react';
-import assert from 'node:assert/strict';
-const server = await createServer({ server: { middlewareMode: true, hmr: false, ws: false }, appType: 'custom' });
+import { createServer } from "vite";
+import { renderToStaticMarkup } from "react-dom/server";
+import { createElement } from "react";
+import assert from "node:assert/strict";
+const server = await createServer({
+  server: { middlewareMode: true, hmr: false, ws: false },
+  appType: "custom",
+});
 try {
-  const { default: App } = await server.ssrLoadModule('/src/App.jsx');
-  const { internalDestination } = await server.ssrLoadModule('/src/usePageNavigation.js');
-  const currentHref = 'http://localhost:5173/';
-  const anchor = (href, options = {}) => ({href, target: '', hasAttribute: () => false, relList: {contains: () => false}, ...options});
-  const click = {button: 0};
-  for (const href of ['/about', '/contact#booking', '/#process']) assert(internalDestination(anchor(href), click, currentHref));
-  for (const href of ['https://external.test/about', 'mailto:hello@brokerux.test', 'tel:+35799123456', '/unknown']) assert.equal(internalDestination(anchor(href), click, currentHref), null);
-  for (const modifier of ['metaKey', 'ctrlKey', 'shiftKey', 'altKey', 'defaultPrevented']) assert.equal(internalDestination(anchor('/about'), {...click, [modifier]: true}, currentHref), null);
-  assert.equal(internalDestination(anchor('/about', {target: '_blank'}), click, currentHref), null);
-  assert.equal(internalDestination(anchor('/about', {hasAttribute: name => name === 'download'}), click, currentHref), null);
-  assert.equal(internalDestination(anchor('/about'), {button: 1}, currentHref), null);
-  const { siteConfig, safePhone } = await server.ssrLoadModule('/src/siteConfig.js');
-  const render = path => renderToStaticMarkup(createElement(App, { path }));
-  for (const path of ['/', '/about', '/contact']) {
+  const { default: App } = await server.ssrLoadModule("/src/App.jsx");
+  const { internalDestination } = await server.ssrLoadModule(
+    "/src/usePageNavigation.js",
+  );
+  const currentHref = "http://localhost:5173/";
+  const anchor = (href, options = {}) => ({
+    href,
+    target: "",
+    hasAttribute: () => false,
+    relList: { contains: () => false },
+    ...options,
+  });
+  const click = { button: 0 };
+  for (const href of ["/about", "/contact#booking", "/#process"])
+    assert(internalDestination(anchor(href), click, currentHref));
+  for (const href of [
+    "https://external.test/about",
+    "mailto:hello@brokerux.test",
+    "tel:+35799123456",
+    "/unknown",
+  ])
+    assert.equal(internalDestination(anchor(href), click, currentHref), null);
+  for (const modifier of [
+    "metaKey",
+    "ctrlKey",
+    "shiftKey",
+    "altKey",
+    "defaultPrevented",
+  ])
+    assert.equal(
+      internalDestination(
+        anchor("/about"),
+        { ...click, [modifier]: true },
+        currentHref,
+      ),
+      null,
+    );
+  assert.equal(
+    internalDestination(
+      anchor("/about", { target: "_blank" }),
+      click,
+      currentHref,
+    ),
+    null,
+  );
+  assert.equal(
+    internalDestination(
+      anchor("/about", { hasAttribute: (name) => name === "download" }),
+      click,
+      currentHref,
+    ),
+    null,
+  );
+  assert.equal(
+    internalDestination(anchor("/about"), { button: 1 }, currentHref),
+    null,
+  );
+  const { siteConfig, safePhone } =
+    await server.ssrLoadModule("/src/siteConfig.js");
+  const render = (path) => renderToStaticMarkup(createElement(App, { path }));
+  for (const path of ["/", "/about", "/contact"]) {
     const html = render(path);
     assert.equal((html.match(/<h1 /g) || []).length, 1, `${path}: one H1`);
-    for (const route of ['/', '/about', '/contact']) assert(html.includes(`href="${route}"`), `${path}: shared navigation ${route}`);
-    assert(!html.includes('Privacy Policy'), `${path}: unconfigured privacy hidden`);
-    assert(!html.includes('mailto:') && !html.includes('tel:'), `${path}: placeholders inactive`);
-    const callHrefs = [...html.matchAll(/<a [^>]*href="([^"]+)"[^>]*><span>(?:Book a (?:Discovery )?Call|Discuss Your Portal)<\/span>/g)].map(match => match[1]);
+    for (const route of ["/", "/about", "/contact"])
+      assert(
+        html.includes(`href="${route}"`),
+        `${path}: shared navigation ${route}`,
+      );
+    assert(
+      !html.includes("Privacy Policy"),
+      `${path}: unconfigured privacy hidden`,
+    );
+    assert(
+      !html.includes("mailto:") && !html.includes("tel:"),
+      `${path}: placeholders inactive`,
+    );
+    const callHrefs = [
+      ...html.matchAll(
+        /<a [^>]*href="([^"]+)"[^>]*><span>(?:Book a (?:Discovery )?Call|Discuss Your Portal)<\/span>/g,
+      ),
+    ].map((match) => match[1]);
     assert(callHrefs.length > 0);
-    assert(callHrefs.every(href => href === '/contact#booking'), `${path}: all call links go to booking placeholder`);
+    assert(
+      callHrefs.every((href) => href === "/contact#booking"),
+      `${path}: all call links go to booking placeholder`,
+    );
   }
-  const home = render('/');
+  const home = render("/");
   assert.equal((home.match(/<section /g) || []).length, 5);
-  const homeHeadings = [...home.matchAll(/<section [^>]*aria-labelledby="([^"]+)"/g)].map(match => match[1]);
-  assert.deepEqual(homeHeadings, ['hero-title', 'process-title', 'deliverables-title', 'pricing-title', 'contact-title']);
-  assert.equal((home.match(/€2,500/g) || []).length, 1);
-  assert(!home.includes('booking-placeholder'));
-  const about = render('/about');
-  for (const copy of ['Discovery', 'Audit &amp; Research', 'Recommendations', 'Delivery']) assert(about.includes(copy));
-  assert.equal((about.match(/SAMPLE \/ NOT A REAL TESTIMONIAL/g) || []).length, 2);
+  const homeHeadings = [
+    ...home.matchAll(/<section [^>]*aria-labelledby="([^"]+)"/g),
+  ].map((match) => match[1]);
+  assert.deepEqual(homeHeadings, [
+    "hero-title",
+    "process-title",
+    "deliverables-title",
+    "pricing-title",
+    "contact-title",
+  ]);
+  assert.equal((home.match(/€3,000/g) || []).length, 1);
+  assert(!home.includes("booking-placeholder"));
+  const about = render("/about");
+  for (const copy of [
+    "Discovery",
+    "Audit &amp; Research",
+    "Recommendations",
+    "Delivery",
+  ])
+    assert(about.includes(copy));
+  assert.equal(
+    (about.match(/SAMPLE \/ NOT A REAL TESTIMONIAL/g) || []).length,
+    2,
+  );
   siteConfig.showDemoTestimonials = false;
-  assert(!render('/about').includes('What Clients Say'), 'production setting hides whole demo section');
-  const contact = render('/contact');
-  for (const copy of ['Your existing client portal', 'The workflows that need improvement', 'Our audit process and deliverables', 'Scope, timeline, and next steps', 'id="booking"', 'calendly-inline-widget', 'your-email@example.com', '+XXX XX XXX XXX']) assert(contact.includes(copy), copy);
-  assert(contact.includes('https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_gdpr_banner=1'), 'supplied Calendly booking URL');
-  assert(!contact.includes('<iframe') && !contact.includes('<form') && !contact.includes('<input'));
-  siteConfig.contactEmail = 'contact@brokerux.test';
-  siteConfig.contactPhone = '+357 99 123 456';
-  const configured = render('/contact');
+  assert(
+    !render("/about").includes("What Clients Say"),
+    "production setting hides whole demo section",
+  );
+  const contact = render("/contact");
+  for (const copy of [
+    "Your existing client portal",
+    "The workflows that need improvement",
+    "Our audit process and deliverables",
+    "Scope, timeline, and next steps",
+    'id="booking"',
+    "calendly-inline-widget",
+    "your-email@example.com",
+    "+XXX XX XXX XXX",
+  ])
+    assert(contact.includes(copy), copy);
+  assert(
+    contact.includes(
+      "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_gdpr_banner=1",
+    ),
+    "supplied Calendly booking URL",
+  );
+  assert(
+    !contact.includes("<iframe") &&
+      !contact.includes("<form") &&
+      !contact.includes("<input"),
+  );
+  siteConfig.contactEmail = "contact@brokerux.test";
+  siteConfig.contactPhone = "+357 99 123 456";
+  const configured = render("/contact");
   assert(configured.includes('href="mailto:contact@brokerux.test"'));
   assert(configured.includes('href="tel:+35799123456"'));
-  assert.equal(safePhone('+XXX XX XXX XXX'), '');
-  assert.equal(safePhone('javascript:alert(1)'), '');
-  assert.equal(safePhone('+357 99 123 456'), '+35799123456');
-  console.log('PASS: three routes, approved homepage, About copy and demo visibility, Calendly booking widget, navigation, and configured contact links.');
-} finally { await server.close(); }
+  assert.equal(safePhone("+XXX XX XXX XXX"), "");
+  assert.equal(safePhone("javascript:alert(1)"), "");
+  assert.equal(safePhone("+357 99 123 456"), "+35799123456");
+  console.log(
+    "PASS: three routes, approved homepage, About copy and demo visibility, Calendly booking widget, navigation, and configured contact links.",
+  );
+} finally {
+  await server.close();
+}

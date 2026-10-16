@@ -15,7 +15,7 @@ Heads of Product, Product Directors, COOs, and founders of small and mid-sized F
 Convert relevant visitors into discovery calls for a fixed-scope client portal UX audit and improvement roadmap that supports existing product, design, and development teams.
 
 ## Capabilities and Constraints
-One public package: Client Portal UX Audit & Improvement Roadmap, €2,500 per project, approximately 2–3 weeks. Up to 10 screens and 3 critical journeys; annotated findings with severity and recommendations; benchmark of 2–3 accessible competitor experiences; prioritized backlog with suggested effort and selected acceptance criteria; Figma redesign of 2 high-impact screens or 1 contained workflow; suggested 90-day roadmap; final presentation and one feedback round.
+One public package: Client Portal UX Audit & Improvement Roadmap, €3,000 per project, approximately 2–3 weeks. Up to 10 screens and 3 critical journeys; annotated findings with severity and recommendations; benchmark of 2–3 accessible competitor experiences; prioritized backlog with suggested effort and selected acceptance criteria; Figma redesign of 2 high-impact screens or 1 contained workflow; suggested 90-day roadmap; final presentation and one feedback round.
 
 Production implementation, full portal rebuilds, regulatory audits, and guaranteed conversion improvements are excluded. Larger scopes may be discussed privately; smaller and expanded package price ranges are not displayed at launch.
 

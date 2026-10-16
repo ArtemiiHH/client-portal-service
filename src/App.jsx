@@ -257,7 +257,7 @@ function Pricing() {
           </div>
           <h3>Client Portal UX Audit &amp; Improvement Roadmap</h3>
           <p className={s.price}>
-            €2,500 <span>/ project</span>
+            €3,000 <span>/ project</span>
           </p>
           <p className={s.timing}>Delivered in less than 2 weeks.</p>
           <Button>Discuss Your Portal</Button>
@@ -296,9 +296,6 @@ function HomeFinalCTA() {
         your team improve it.
       </p>
       <Button />
-      <p className={s.contactReassurance}>
-        No commitment. Just a conversation about your portal.
-      </p>
     </section>
   );
 }
@@ -544,9 +541,7 @@ function ContactPage() {
       >
         <p className={s.eyebrow}>CONTACT BROKERUX</p>
         <h1 id="contact-page-title">
-          Find What's Holding Your Brokerage Back.
-          <br />
-          Risk-Free.
+          Find What's Holding Your Brokerage Back. Risk-Free.
         </h1>
         <p className={s.invitationCopy}>
           Find out what could be preventing more of your traders from funding

@@ -2,7 +2,7 @@
 Build a solo consultancy website selling Broker Client Portal UX Audit & Improvement Roadmap to small/mid-sized Forex/CFD brokers, supporting internal teams.
 
 ## Service
-€2,500; 2–3 weeks. Deliver: audit of 10 screens/3 journeys; annotated findings; 2–3 competitor benchmarks; prioritized backlog with effort estimates/acceptance criteria; Figma redesign of 2 screens or 1 workflow; 90-day roadmap; presentation; one feedback round. Exclude coding, rebuilds, regulatory audits, and guaranteed uplift.
+€3,000; 2–3 weeks. Deliver: audit of 10 screens/3 journeys; annotated findings; 2–3 competitor benchmarks; prioritized backlog with effort estimates/acceptance criteria; Figma redesign of 2 screens or 1 workflow; 90-day roadmap; presentation; one feedback round. Exclude coding, rebuilds, regulatory audits, and guaranteed uplift.
 
 ## Stack
 React.js, Vite, CSS Modules; reusable components, responsive layouts, accessible interactions.
