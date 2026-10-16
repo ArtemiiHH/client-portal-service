@@ -541,7 +541,7 @@ function ContactPage() {
       >
         <p className={s.eyebrow}>CONTACT BROKERUX</p>
         <h1 id="contact-page-title">
-          Find What's Holding Your Brokerage Back. Risk-Free.
+          Ready to Convert More Clients?
         </h1>
         <p className={s.invitationCopy}>
           Find out what could be preventing more of your traders from funding
