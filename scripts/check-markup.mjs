@@ -39,8 +39,8 @@ try {
   siteConfig.showDemoTestimonials = false;
   assert(!render('/about').includes('What Clients Say'), 'production setting hides whole demo section');
   const contact = render('/contact');
-  for (const copy of ['Your existing client portal', 'The workflows that need improvement', 'Our audit process and deliverables', 'Scope, timeline, and next steps', 'id="booking"', 'Calendly integration placeholder', 'your-email@example.com', '+XXX XX XXX XXX']) assert(contact.includes(copy), copy);
-  assert(/<button[^>]*disabled=""/.test(contact), 'booking CTA disabled');
+  for (const copy of ['Your existing client portal', 'The workflows that need improvement', 'Our audit process and deliverables', 'Scope, timeline, and next steps', 'id="booking"', 'calendly-inline-widget', 'your-email@example.com', '+XXX XX XXX XXX']) assert(contact.includes(copy), copy);
+  assert(contact.includes('https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_gdpr_banner=1'), 'supplied Calendly booking URL');
   assert(!contact.includes('<iframe') && !contact.includes('<form') && !contact.includes('<input'));
   siteConfig.contactEmail = 'contact@brokerux.test';
   siteConfig.contactPhone = '+357 99 123 456';
@@ -50,5 +50,5 @@ try {
   assert.equal(safePhone('+XXX XX XXX XXX'), '');
   assert.equal(safePhone('javascript:alert(1)'), '');
   assert.equal(safePhone('+357 99 123 456'), '+35799123456');
-  console.log('PASS: three routes, approved homepage, About copy and demo visibility, static booking slot, navigation, and configured contact links.');
+  console.log('PASS: three routes, approved homepage, About copy and demo visibility, Calendly booking widget, navigation, and configured contact links.');
 } finally { await server.close(); }

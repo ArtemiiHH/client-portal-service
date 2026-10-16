@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import {
   ArrowUpRight,
   ArrowRight,
@@ -9,7 +9,6 @@ import {
   MagnifyingGlass,
   Stack,
   MapTrifold,
-  CalendarBlank,
   EnvelopeSimple,
   Phone,
   ChatCircle,
@@ -497,39 +496,42 @@ function ContactDetails() {
     </dl>
   );
 }
-/** Static integration slot. Replace this component when the owner connects a scheduler. */
-export function BookingPlaceholder() {
+const calendlyUrl = "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_gdpr_banner=1";
+
+export function BookingCalendar() {
+  const widgetRef = useRef(null);
+
+  useEffect(() => {
+    if (window.Calendly) {
+      window.Calendly.initInlineWidget({
+        url: calendlyUrl,
+        parentElement: widgetRef.current,
+      });
+      return;
+    }
+
+    const scriptUrl = "https://assets.calendly.com/assets/external/widget.js";
+    if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
+      const script = document.createElement("script");
+      script.src = scriptUrl;
+      script.async = true;
+      document.body.appendChild(script);
+    }
+  }, []);
+
   return (
     <aside
-      className={`${s.glassCard} ${s.bookingCard}`}
+      className={s.bookingCalendar}
       id="booking"
-      aria-labelledby="booking-title"
+      aria-label="Book a free 30-minute UX consultation"
       tabIndex={-1}
     >
-      <CalendarBlank className={s.calendarIcon} size={30} aria-hidden="true" />
-      <h2 id="booking-title">Schedule a Call</h2>
-      <p>Choose a convenient time to speak with BrokerUX.</p>
-      <div className={s.calendarPlaceholder}>
-        <CalendarBlank size={42} aria-hidden="true" />
-        <h3>Booking Calendar</h3>
-        <p>Calendly integration placeholder</p>
-        <span className={s.badge}>Booking available soon</span>
-      </div>
-      <button
-        type="button"
-        className={`${s.button} ${s.disabledButton}`}
-        disabled
-        aria-describedby="booking-status"
-      >
-        <span>Book a Discovery Call</span>
-        <span className={s.buttonIcon}>
-          <ArrowRight size={18} aria-hidden="true" />
-        </span>
-      </button>
-      <p id="booking-status" className={s.bookingStatus}>
-        Booking available soon
-      </p>
-      <p className={s.bookingNote}>No commitment · Introductory call</p>
+      <div
+        ref={widgetRef}
+        className="calendly-inline-widget"
+        data-url={calendlyUrl}
+        style={{ minWidth: "320px", height: "600px" }}
+      />
     </aside>
   );
 }
@@ -549,7 +551,7 @@ function ContactPage() {
         <p className={s.invitationCopy}>
           Find out what could be preventing more of your traders from funding
           their accounts. Start with a conversation, then get a clear plan to
-          address the friction in just 14–21 days.
+          address the friction in under 2 weeks.
         </p>
         <h2>What we'll discuss:</h2>
         <ul className={s.discussionList}>
@@ -567,7 +569,7 @@ function ContactPage() {
         </ul>
         <ContactDetails />
       </section>
-      <BookingPlaceholder />
+      <BookingCalendar />
     </div>
   );
 }

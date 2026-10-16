@@ -36,8 +36,8 @@ try {
       }
       if (route === '/contact') {
         assert.equal(await page.locator('#booking').count(), 1);
-        assert(await page.getByRole('button', {name:'Book a Discovery Call'}).isDisabled());
-        assert.equal(await page.locator('iframe, form, input').count(), 0);
+        assert.equal(await page.locator('#booking .calendly-inline-widget').count(), 1);
+        assert.equal(await page.locator('#booking .calendly-inline-widget').getAttribute('data-url'), 'https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_gdpr_banner=1');
       }
       const axe = await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21a','wcag21aa']).analyze();
       assert.equal(axe.violations.length, 0, JSON.stringify(axe.violations.map(item => ({id:item.id, nodes:item.nodes.map(node => node.target)}))));

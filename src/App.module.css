@@ -150,27 +150,16 @@
 .contactDetails dd { margin: 0; font-size: var(--font-body); line-height: 1.8; overflow-wrap: anywhere; }
 .contactDetails small { display: block; color: var(--muted); font-size: var(--font-small); margin-top: 3px; }
 .contactDetails a:hover { color: var(--accent); }
-.bookingCard { padding: 34px; scroll-margin-top: 112px; }
-.calendarIcon { color: var(--accent); margin-bottom: 22px; }
-.bookingCard > h2 { font-size: 29px; font-weight: 500; letter-spacing: -.025em; margin-bottom: 12px; }
-.bookingCard > p { font-size: var(--font-body); line-height: 1.8; }
-.calendarPlaceholder { min-height: 240px; margin-block: 26px; border: 1px dashed #ffffff26; border-radius: 12px; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 12px; padding: 24px 12px; }
-.calendarPlaceholder svg { color: var(--muted); margin-bottom: 5px; }
-.calendarPlaceholder h3 { font-size: var(--font-title); margin: 0; }
-.calendarPlaceholder p { font-size: var(--font-small); }
-.calendarPlaceholder .badge { margin-top: 6px; color: var(--accent); }
-.disabledButton { width: 100%; border: 0; font-family: inherit; background: #343e25; color: #c1c8b3; cursor: not-allowed; }
-.disabledButton:hover, .disabledButton:active { background: #343e25; transform: none; }
-.bookingCard .bookingStatus { color: var(--muted); text-align: center; font-size: var(--font-small); margin-top: 12px; }
-.bookingCard .bookingNote { text-align: center; font-size: var(--font-small); margin-top: 7px; }
-@media (max-width: 1023px) { .contactLayout { gap: 32px; } .bookingCard { padding: 28px; } }
+.bookingCalendar { min-width: 0; scroll-margin-top: 112px; }
+@media (max-width: 1023px) { .contactLayout { gap: 32px; } }
 @media (max-width: 767px) {
   .innerHero { padding-bottom: 42px; }
   .approachGrid, .testimonialGrid, .contactLayout { grid-template-columns: 1fr; }
   .approachGrid .glassCard { padding: 24px; }
   .contactLayout { gap: 40px; padding-block: 42px 58px; }
   .contactInvitation h1 { font-size: clamp(35px, 8vw, 52px); }
-  .bookingCard { padding: 26px 22px; scroll-margin-top: 92px; }
+  .bookingCalendar { scroll-margin-top: 92px; }
+  .bookingCalendar :global(.calendly-inline-widget) { min-width: 0 !important; }
   .contactInvitation h2 { margin-top: 28px; }
 }
 
