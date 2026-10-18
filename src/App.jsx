@@ -178,7 +178,9 @@ function Hero() {
           <br />
           <span>Sign-Up and First Deposit</span>
         </h1>
-        <p className={s.heroCopy}>Identify Why Your Client Portal Keeps Losing Clients</p>
+        <p className={s.heroCopy}>
+          Identify Why Your Client Portal Keeps Losing Clients
+        </p>
       </div>
       <div className={s.heroActions}>
         <Button />
@@ -409,9 +411,8 @@ function AboutPage() {
             <span>Client Experiences.</span>
           </h1>
           <p className={s.heroCopy}>
-            BrokerUX is an independent UX consulting service helping Forex and
-            CFD brokers identify usability problems and turn them into
-            actionable improvements.
+            We help brokers understand why their client portal is losing
+            clients—and how to fix it.
           </p>
         </div>
       </section>
@@ -470,8 +471,7 @@ function ContactDetails() {
             <a href={`mailto:${email}`}>{email}</a>
           ) : (
             <>
-              <span>your-email@example.com</span>
-              <small>Placeholder · Replace before publishing</small>
+              <span>artemii@brokerux.com</span>
             </>
           )}
         </dd>
@@ -485,7 +485,6 @@ function ContactDetails() {
           ) : (
             <>
               <span>+XXX XX XXX XXX</span>
-              <small>Placeholder · Replace before publishing</small>
             </>
           )}
         </dd>
@@ -493,7 +492,8 @@ function ContactDetails() {
     </dl>
   );
 }
-const calendlyUrl = "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_event_type_details=1&hide_gdpr_banner=1";
+const calendlyUrl =
+  "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_event_type_details=1&hide_gdpr_banner=1";
 
 export function BookingCalendar() {
   const widgetRef = useRef(null);
@@ -540,9 +540,7 @@ function ContactPage() {
         aria-labelledby="contact-page-title"
       >
         <p className={s.eyebrow}>CONTACT BROKERUX</p>
-        <h1 id="contact-page-title">
-          Ready to Convert More Clients?
-        </h1>
+        <h1 id="contact-page-title">Ready to Convert More Clients?</h1>
         <p className={s.invitationCopy}>
           Find out what could be preventing more of your traders from funding
           their accounts. Start with a conversation, then get a clear plan to
