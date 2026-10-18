@@ -227,6 +227,37 @@ function Deliverables() {
       aria-labelledby="deliverables-title"
     >
       <h2 id="deliverables-title">What You Get</h2>
+      <figure className={s.deliverablePreview}>
+        <a
+          href="/images/dashboard-analysis-mockup.png"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="View the annotated UX analysis example at full size (opens in a new tab)"
+        >
+          <img
+            src="/images/dashboard-analysis-mockup.png"
+            alt="Example portal UX analysis connecting onboarding, account hierarchy, and deposit journey issues to annotated dashboard screenshots."
+            width="2321"
+            height="1278"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <figcaption>
+          <strong>See what an audit reveals.</strong>
+          <p>
+            Illustrative analysis showing where traders encounter friction and
+            why it matters.
+          </p>
+          <a
+            href="/images/dashboard-analysis-mockup.png"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View full-size example <ArrowUpRight size={16} aria-hidden="true" />
+          </a>
+        </figcaption>
+      </figure>
       <ul className={s.deliverableList}>
         {deliverables.map(([title, text]) => (
           <li key={title}>
@@ -251,7 +282,6 @@ function Pricing() {
         <div className={s.priceSummary}>
           <div className={s.priceTop}>
             <p className={s.eyebrow}>BROKERUX CORE PACKAGE</p>
-            <span className={s.badge}>Fixed Scope</span>
           </div>
           <h3>Client Portal UX Audit &amp; Improvement Roadmap</h3>
           <p className={s.price}>
@@ -396,30 +426,20 @@ function AboutPage() {
   return (
     <>
       <section
-        className={`${s.hero} ${s.innerHero} ${s.aboutHero}`}
+        className={`${s.hero} ${s.innerHero}`}
         aria-labelledby="about-title"
       >
-        <div className={s.heroLayout}>
-          <div className={s.heroFrame}>
-            <p className={s.eyebrow}>ABOUT BROKERUX</p>
-            <h1 id="about-title">
-              Built Around Better
-              <br />
-              <span>Client Experiences.</span>
-            </h1>
-            <p className={s.heroCopy}>
-              We help brokers understand why their client portal is losing
-              clients—and how to fix it.
-            </p>
-          </div>
-          <img
-            className={s.heroImage}
-            src="/images/brokerux-mockup.png"
-            alt="Annotated broker client portal showing UX issues with onboarding, account actions, information hierarchy, and deposits."
-            width="2321"
-            height="1278"
-            fetchPriority="high"
-          />
+        <div className={s.heroFrame}>
+          <p className={s.eyebrow}>ABOUT BROKERUX</p>
+          <h1 id="about-title">
+            Built Around Better
+            <br />
+            <span>Client Experiences.</span>
+          </h1>
+          <p className={s.heroCopy}>
+            We help brokers understand why their client portal is losing
+            clients—and how to fix it.
+          </p>
         </div>
       </section>
       <div className={s.container}>

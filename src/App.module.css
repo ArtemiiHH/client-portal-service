@@ -228,43 +228,6 @@
   gap: 27px;
   margin-top: 28px;
 }
-.heroLayout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-  align-items: center;
-  gap: 40px;
-  max-width: 1440px;
-  margin-inline: auto;
-}
-.aboutHero {
-  text-align: left;
-}
-.aboutHero .heroFrame {
-  min-width: 0;
-  width: 100%;
-  padding: 28px 24px;
-}
-.aboutHero h1 {
-  font-size: clamp(36px, 3.6vw, 58px);
-}
-.heroImage {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-@media (max-width: 1023px) {
-  .heroLayout {
-    grid-template-columns: 1fr;
-    gap: 40px;
-    max-width: 760px;
-  }
-  .aboutHero {
-    text-align: center;
-  }
-  .aboutHero h1 {
-    font-size: clamp(35px, 5.6vw, 58px);
-  }
-}
 .textLink {
   font-size: var(--font-body);
   display: inline-flex;
@@ -352,9 +315,53 @@
 }
 .deliverables {
   display: grid;
-  grid-template-columns: 0.75fr 1.65fr;
-  gap: 72px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 40px 48px;
   border-block: 1px solid var(--line);
+}
+.deliverables > h2 {
+  grid-column: 1 / -1;
+}
+.deliverablePreview {
+  min-width: 0;
+  margin: 0;
+}
+.deliverablePreview > a {
+  display: block;
+}
+.deliverablePreview img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+.deliverablePreview figcaption {
+  margin-top: 24px;
+}
+.deliverablePreview strong {
+  display: block;
+  font-size: var(--font-title);
+  font-weight: 500;
+}
+.deliverablePreview p {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.8;
+}
+.deliverablePreview figcaption a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+  padding-block: 8px;
+  color: var(--accent);
+}
+.deliverablePreview figcaption a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.deliverableList {
+  min-width: 0;
 }
 .deliverableList li {
   display: grid;
@@ -405,13 +412,6 @@
   gap: 16px;
   flex-wrap: wrap;
   margin-bottom: 23px;
-}
-.badge {
-  padding: 5px 10px;
-  font-size: var(--font-small);
-  border: 1px solid #ffffff20;
-  border-radius: 999px;
-  color: #c1c8d0;
 }
 .priceSummary h3 {
   font-size: 26px;
