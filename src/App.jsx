@@ -400,20 +400,30 @@ function AboutPage() {
   return (
     <>
       <section
-        className={`${s.hero} ${s.innerHero}`}
+        className={`${s.hero} ${s.innerHero} ${s.aboutHero}`}
         aria-labelledby="about-title"
       >
-        <div className={s.heroFrame}>
-          <p className={s.eyebrow}>ABOUT BROKERUX</p>
-          <h1 id="about-title">
-            Built Around Better
-            <br />
-            <span>Client Experiences.</span>
-          </h1>
-          <p className={s.heroCopy}>
-            We help brokers understand why their client portal is losing
-            clients—and how to fix it.
-          </p>
+        <div className={s.heroLayout}>
+          <div className={s.heroFrame}>
+            <p className={s.eyebrow}>ABOUT BROKERUX</p>
+            <h1 id="about-title">
+              Built Around Better
+              <br />
+              <span>Client Experiences.</span>
+            </h1>
+            <p className={s.heroCopy}>
+              We help brokers understand why their client portal is losing
+              clients—and how to fix it.
+            </p>
+          </div>
+          <img
+            className={s.heroImage}
+            src="/images/brokerux-mockup.png"
+            alt="Annotated broker client portal showing UX issues with onboarding, account actions, information hierarchy, and deposits."
+            width="2321"
+            height="1278"
+            fetchPriority="high"
+          />
         </div>
       </section>
       <div className={s.container}>
