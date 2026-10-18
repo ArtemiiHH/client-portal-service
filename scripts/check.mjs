@@ -22,7 +22,7 @@ try {
       assert.equal(await navigation.locator('[aria-current="page"]').getAttribute('href'), route);
       const callLinks = page.getByRole('link', {name:/Book a (Discovery )?Call|Discuss Your Portal/i});
       const destinations = await callLinks.evaluateAll(nodes => nodes.map(node => node.getAttribute('href')));
-      assert(destinations.length && destinations.every(href => href === '/contact#booking'));
+      assert(destinations.length && destinations.every(href => href === '/contact'));
       if (route === '/') {
         assert.deepEqual(await page.locator('main section').evaluateAll(nodes => nodes.map(node => node.getAttribute('aria-labelledby'))), ['hero-title','process-title','deliverables-title','pricing-title','contact-title']);
         const button = await page.locator('main section').first().getByRole('link', {name:'Book a Discovery Call'}).boundingBox();
@@ -65,7 +65,7 @@ try {
     await page.getByRole('link',{name:'View Our Process'}).click();
     await page.waitForURL('**/#process');
     await page.locator('#contact').getByRole('link',{name:'Book a Discovery Call'}).click();
-    await page.waitForURL('**/contact#booking');
+    await page.waitForURL('**/contact');
     await page.locator('#booking').waitFor({state:'visible'});
     if (width < 768) {
       await page.getByRole('button',{name:'Open menu'}).click();

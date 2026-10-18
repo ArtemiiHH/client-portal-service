@@ -76,7 +76,7 @@ function Button({
   compact = false,
   className = "",
   onClick,
-  href = "/contact#booking",
+  href = "/contact",
 }) {
   const Icon = compact ? ArrowUpRight : ArrowRight;
   return (
@@ -188,11 +188,6 @@ function Hero() {
           View Our Process <ArrowDown size={16} aria-hidden="true" />
         </a>
       </div>
-      <ul className={s.trustRow}>
-        <li>Fixed project pricing</li>
-        <li>Delivery in less than 2 weeks</li>
-        <li>Built for brokers</li>
-      </ul>
     </section>
   );
 }
@@ -509,21 +504,37 @@ export function BookingCalendar() {
   const widgetRef = useRef(null);
 
   useEffect(() => {
-    if (window.Calendly) {
+    const container = widgetRef.current;
+    let disposed = false;
+    const initialize = () => {
+      if (disposed || !window.Calendly) return;
+      container.replaceChildren();
       window.Calendly.initInlineWidget({
         url: calendlyUrl,
-        parentElement: widgetRef.current,
+        parentElement: container,
       });
-      return;
-    }
+    };
 
     const scriptUrl = "https://assets.calendly.com/assets/external/widget.js";
-    if (!document.querySelector(`script[src="${scriptUrl}"]`)) {
-      const script = document.createElement("script");
-      script.src = scriptUrl;
-      script.async = true;
-      document.body.appendChild(script);
+    let script = document.querySelector(`script[src="${scriptUrl}"]`);
+    if (window.Calendly) {
+      initialize();
+    } else {
+      const needsScript = !script;
+      if (needsScript) {
+        script = document.createElement("script");
+        script.src = scriptUrl;
+        script.async = true;
+      }
+      script.addEventListener("load", initialize);
+      if (needsScript) document.body.appendChild(script);
     }
+
+    return () => {
+      disposed = true;
+      script?.removeEventListener("load", initialize);
+      container.replaceChildren();
+    };
   }, []);
 
   return (
@@ -537,6 +548,7 @@ export function BookingCalendar() {
         ref={widgetRef}
         className="calendly-inline-widget"
         data-url={calendlyUrl}
+        data-auto-load="false"
         style={{ minWidth: "320px", height: "600px" }}
       />
     </aside>

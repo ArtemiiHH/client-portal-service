@@ -20,7 +20,7 @@ try {
     ...options,
   });
   const click = { button: 0 };
-  for (const href of ["/about", "/contact#booking", "/#process"])
+  for (const href of ["/about", "/contact", "/#process"])
     assert(internalDestination(anchor(href), click, currentHref));
   for (const href of [
     "https://external.test/about",
@@ -90,7 +90,7 @@ try {
     ].map((match) => match[1]);
     assert(callHrefs.length > 0);
     assert(
-      callHrefs.every((href) => href === "/contact#booking"),
+      callHrefs.every((href) => href === "/contact"),
       `${path}: all call links go to booking placeholder`,
     );
   }

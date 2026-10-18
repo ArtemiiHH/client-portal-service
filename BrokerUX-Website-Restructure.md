@@ -18,7 +18,7 @@ Restructure the existing website into **three routes** using a shared header, fo
 2. **About Us (`/about`)** — Introduction → How We Work → Testimonials (clearly labeled demo placeholders) → Final CTA.
 3. **Contact (`/contact`)** — Introductory copy and contact details beside a **nonfunctional booking-widget placeholder**, then footer.
 
-Do not create any additional marketing pages, functional scheduling system, backend, calendar API, or booking availability data. The site's aim is to invite discovery calls, but **Calendly (or an equivalent external scheduler) will be connected later by the owner**. Reserve one isolated, easy-to-replace booking component. Until configured, booking buttons must lead to `/contact#booking` (or scroll to the booking placeholder when already on Contact), **not** claim that an appointment is booked. Email/phone links only become active after real contact details have been supplied.
+Do not create any additional marketing pages, functional scheduling system, backend, calendar API, or booking availability data. The site's aim is to invite discovery calls, but **Calendly (or an equivalent external scheduler) will be connected later by the owner**. Reserve one isolated, easy-to-replace booking component. Until configured, booking buttons must lead to `/contact` (or scroll to the booking placeholder when already on Contact), **not** claim that an appointment is booked. Email/phone links only become active after real contact details have been supplied.
 
 Keep the writing clear, direct, premium, credible, and tailored to Forex/CFD broker decision-makers.
 
@@ -60,7 +60,7 @@ Avoid excessive gradients, floating objects, flashy 3D effects, large illustrati
 **Right:** `Home` · `About` · `Contact` · primary button `Book a Call ↗`.
 
 - Home links to `/`; About links to `/about`; Contact links to `/contact`.
-- `Book a Call` routes to `/contact#booking` until a real scheduling service is configured.
+- `Book a Call` routes to `/contact` until a real scheduling service is configured.
 - On the Home page, the `View Our Process` link scrolls to `/#process`; pricing anchor is `/#pricing`.
 - Keep the header compact, optionally sticky with a restrained translucent glass surface; provide a simple accessible mobile navigation pattern.
 - Shared footer includes BrokerUX, links to About and Contact, a Privacy Policy link **only if a real page/URL is provided**, and optional configured LinkedIn/email. No broken links, invented details, or nonfunctional promises.
@@ -80,7 +80,7 @@ Avoid excessive gradients, floating objects, flashy 3D effects, large illustrati
 **Supporting copy:**
 > We audit your client portal, identify usability issues, and deliver a prioritized improvement plan your product and development teams can execute.
 
-**Primary CTA:** `Book a Discovery Call →` (navigate to `/contact#booking` until Calendly is connected)  
+**Primary CTA:** `Book a Discovery Call →` (navigate to `/contact` until Calendly is connected)  
 **Secondary text link:** `View Our Process ↓` (scroll to `#process`)
 
 **Trust / scope indicators**, presented in one understated horizontal row:
@@ -165,7 +165,7 @@ Use **one featured pricing card only**, not a three-tier pricing table.
 - Suggested 90-day improvement roadmap
 - Final presentation + 1 feedback round
 
-**Pricing CTA:** `Discuss Your Portal →` (navigate to `/contact#booking`)
+**Pricing CTA:** `Discuss Your Portal →` (navigate to `/contact`)
 
 **Small scope note:**
 > Larger scopes available upon request. Production implementation, complete portal rebuilds, regulatory audits, and guaranteed conversion improvements are not included.
@@ -184,7 +184,7 @@ Do **not** display the optional focused audit (€800–€1,200) or expanded op
 **Supporting copy:**
 > Let's identify what's holding it back and discuss how BrokerUX can help your team improve it.
 
-**CTA:** `Book a Discovery Call →` (navigate to `/contact#booking`)  
+**CTA:** `Book a Discovery Call →` (navigate to `/contact`)  
 **Reassurance line:**
 > No commitment. Just a conversation about your portal.
 
@@ -328,7 +328,7 @@ HOME (/)
   02 How It Works (Audit → Prioritize → Roadmap)
   03 What You Get (deliverables + optional sample)
   04 Pricing (one €3,000 package)
-  05 Final CTA → /contact#booking
+  05 Final CTA → /contact
 
 ABOUT (/about)
   01 Short Introduction
@@ -352,7 +352,7 @@ SHARED FOOTER
 2. Explicitly say **Forex/CFD broker client portals**; avoid generic agency language.
 3. Present the offer as **UX audit + recommendations + targeted Figma redesign + implementation roadmap** — **not** development or a completed portal overhaul.
 4. Use short, credible claims. Never guarantee conversion uplift, regulatory compliance, or measurable results without evidence.
-5. Use one primary conversion journey: visitors navigate to `/contact#booking` to discuss a call; only enable real booking after the owner connects a scheduler.
+5. Use one primary conversion journey: visitors navigate to `/contact` to discuss a call; only enable real booking after the owner connects a scheduler.
 6. The **two fictional testimonials** are *clearly labeled design-only samples*. Hide them before production unless genuinely verified feedback replaces them; never pass them off as customer statements.
 7. Do not add extra marketing sections, generic FAQ, blog, staff directory, fictional case studies, partner logos, or performance metrics.
 8. Keep the **€3,000 fixed price** and **2–3 week timeline** consistent.
@@ -367,6 +367,6 @@ SHARED FOOTER
 - About has a short introduction, four-step working process, two **unmistakably fictional** testimonial placeholders, and a closing CTA.
 - Contact has a short introduction, four discussion points, configurable phone/email, and a static calendar-integration placeholder.
 - No functional booking logic, fake available times, invented client successes, or fake verified endorsements.
-- All call-related navigation goes to `/contact#booking` until the owner configures Calendly.
+- All call-related navigation goes to `/contact` until the owner configures Calendly.
 - Shared dark visual style: near-black base, muted glass cards, soft lime accent, generous spacing.
 - Pages are legible, elegant, and easy to navigate on desktop and mobile.

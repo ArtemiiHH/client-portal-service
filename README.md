@@ -34,7 +34,7 @@ VITE_BOOKING_URL=
 
 `src/siteConfig.js` centralizes all contact values. Without configured details, Contact shows explicitly labeled dummy email/phone text without active mailto/tel links. Email, LinkedIn, and Privacy Policy appear in the footer only when their destinations are valid and configured. Phone values accept international numbers with spaces, parentheses, dots, and hyphens.
 
-Every call link currently leads to `/contact#booking`, even if `VITE_BOOKING_URL` is supplied. That variable is reserved for a future integration and does not activate booking. `BookingPlaceholder` in `src/App.jsx` is the isolated replacement point; its visual call button is disabled and labeled available soon. No calendars, available times, forms, registration, API requests, or booking success states exist.
+Every call link currently leads to `/contact`, even if `VITE_BOOKING_URL` is supplied. That variable is reserved for a future integration and does not activate booking. `BookingPlaceholder` in `src/App.jsx` is the isolated replacement point; its visual call button is disabled and labeled available soon. No calendars, available times, forms, registration, API requests, or booking success states exist.
 
 The About page's two fictional sample reviews have conspicuous labels in development. `siteConfig.showDemoTestimonials` is false in production builds, hiding the entire section. Replace samples with genuinely verified, permission-based feedback before publishing that section.
 
