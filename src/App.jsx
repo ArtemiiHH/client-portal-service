@@ -23,6 +23,7 @@ const nav = [
   ["About", "/about"],
   ["Contact", "/contact"],
 ];
+const headerNav = [nav[0], nav[1], ["Pricing", "/#pricing"], nav[2]];
 const steps = [
   [
     MagnifyingGlass,
@@ -116,7 +117,7 @@ function Header({ path }) {
       <div className={s.navBar}>
         <Brand />
         <nav className={s.desktopNav} aria-label="Main navigation">
-          {nav.map(([label, id]) => (
+          {headerNav.map(([label, id]) => (
             <a
               key={id}
               href={id}
@@ -145,7 +146,7 @@ function Header({ path }) {
           className={s.mobileNav}
           aria-label="Mobile navigation"
         >
-          {nav.map(([label, id]) => (
+          {headerNav.map(([label, id]) => (
             <a
               key={id}
               href={id}
