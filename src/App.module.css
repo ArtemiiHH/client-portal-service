@@ -163,5 +163,9 @@
 }
 
 .availabilityTag { display: inline-flex; align-items: center; justify-content: center; gap: 8px; max-width: 100%; margin-bottom: 20px; padding: 6px 12px; border: 1px solid #d7f87140; border-radius: 999px; background: #d7f87108; color: var(--text); font-size: .75rem; line-height: 1.5; text-wrap: balance; }
-.availabilityDot { width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: var(--accent); }
+.availabilityDot { width: 5px; height: 5px; flex-shrink: 0; border-radius: 50%; background: var(--accent); animation: availabilityBlink 1.6s ease-in-out infinite; }
+@keyframes availabilityBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .2; }
+}
 @media (max-width: 767px) { .availabilityTag { padding: 6px 12px; margin-bottom: 16px; } }
