@@ -493,7 +493,7 @@ function ContactDetails() {
     </dl>
   );
 }
-const calendlyUrl = "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_gdpr_banner=1";
+const calendlyUrl = "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_event_type_details=1&hide_gdpr_banner=1";
 
 export function BookingCalendar() {
   const widgetRef = useRef(null);
