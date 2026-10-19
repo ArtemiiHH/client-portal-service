@@ -428,18 +428,18 @@ function AboutPage() {
     <>
       <section
         className={`${s.hero} ${s.innerHero}`}
-        aria-labelledby="about-title"
+        aria-labelledby="about-label"
       >
         <div className={s.heroFrame}>
-          <p className={s.eyebrow}>ABOUT BROKERUX</p>
-          <h1 id="about-title">
-            Built Around Better
-            <br />
-            <span>Client Experiences.</span>
+          <h1 id="about-label" className={`${s.eyebrow} ${s.aboutEyebrow}`}>
+            ABOUT BROKERUX
           </h1>
           <p className={s.heroCopy}>
-            We help brokers understand why their client portal is losing
-            clients—and how to fix it.
+            We audit your brokerage’s client portal to find friction in sign-up,
+            verification, and deposits. Your team gets prioritized fixes, Figma
+            redesigns, and a roadmap to put them into practice. The goal is to
+            turn more sign-ups into funded accounts and keep clients from
+            dropping off before their first deposit.
           </p>
         </div>
       </section>

@@ -716,6 +716,13 @@
 .innerHero {
   padding-bottom: 72px;
 }
+.hero .aboutEyebrow {
+  font-size: var(--font-title);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  line-height: 1.6;
+  margin: 0 0 24px;
+}
 .centerHeading {
   text-align: center;
   margin-bottom: 34px;
