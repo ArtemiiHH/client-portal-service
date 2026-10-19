@@ -716,6 +716,27 @@
 .innerHero {
   padding-bottom: 72px;
 }
+.aboutHeroLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.35fr);
+  align-items: center;
+  gap: 40px;
+  text-align: left;
+}
+.aboutJourneyImage {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+@media (max-width: 800px) {
+  .aboutHeroLayout {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+  }
+  .aboutHeroLayout .heroCopy {
+    max-width: none;
+  }
+}
 .hero .aboutEyebrow {
   font-size: var(--font-title);
   font-weight: 600;

@@ -29,7 +29,7 @@ const steps = [
   [
     MagnifyingGlass,
     "We Audit Your Portal",
-    "We review up to 10 screens and 3 critical user journeys, identifying usability issues, confusing flows, and friction points.",
+    "We review up to 10 screens and 3 critical user journeys, identifying usability issues, confusing flows, and why you keep losing deposits.",
   ],
   [
     Stack,
@@ -430,17 +430,26 @@ function AboutPage() {
         className={`${s.hero} ${s.innerHero}`}
         aria-labelledby="about-label"
       >
-        <div className={s.heroFrame}>
-          <h1 id="about-label" className={`${s.eyebrow} ${s.aboutEyebrow}`}>
-            ABOUT BROKERUX
-          </h1>
-          <p className={s.heroCopy}>
-            We audit your brokerage’s client portal to find friction in sign-up,
-            verification, and deposits. Your team gets prioritized fixes, Figma
-            redesigns, and a roadmap to put them into practice. The goal is to
-            turn more sign-ups into funded accounts and keep clients from
-            dropping off before their first deposit.
-          </p>
+        <div className={`${s.heroFrame} ${s.aboutHeroLayout}`}>
+          <div>
+            <h1 id="about-label" className={`${s.eyebrow} ${s.aboutEyebrow}`}>
+              ABOUT BROKERUX
+            </h1>
+            <p className={s.heroCopy}>
+              We audit your brokerage’s client portal to find friction in sign-up,
+              verification, and deposits. Your team gets prioritized fixes, Figma
+              redesigns, and a roadmap to put them into practice. The goal is to
+              turn more sign-ups into funded accounts and keep clients from
+              dropping off before their first deposit.
+            </p>
+          </div>
+          <img
+            className={s.aboutJourneyImage}
+            src="/images/broker-client-journey.png"
+            alt="Broker client journey: registration, verification, first deposit, trading, and ongoing use. Friction at any step can lead to lost deposits."
+            width={1828}
+            height={860}
+          />
         </div>
       </section>
       <div className={s.container}>
