@@ -13,6 +13,7 @@ import {
   Phone,
   ChatCircle,
   ClipboardText,
+  User,
 } from "@phosphor-icons/react";
 import { siteConfig, safeUrl, safeEmail, safePhone } from "./siteConfig";
 import s from "./App.module.css";
@@ -287,7 +288,7 @@ function Pricing() {
           <p className={s.price}>
             €3,000 <span>/ project</span>
           </p>
-          <p className={s.timing}>Delivered in less than 2 weeks.</p>
+          <p className={s.timing}>Delivered in under 2 weeks</p>
           <Button>Discuss Your Portal</Button>
         </div>
         <ul className={s.included}>
@@ -576,6 +577,9 @@ export function BookingCalendar() {
   );
 }
 function ContactPage() {
+  const hostPhoto = siteConfig.callHostPhoto.startsWith("/images/")
+    ? siteConfig.callHostPhoto
+    : safeUrl(siteConfig.callHostPhoto);
   return (
     <div className={`${s.container} ${s.contactLayout}`}>
       <section
@@ -603,6 +607,19 @@ function ContactPage() {
             </li>
           ))}
         </ul>
+        <div className={s.callHost}>
+          <div className={s.callHostAvatar}>
+            {hostPhoto ? (
+              <img src={hostPhoto} alt="" />
+            ) : (
+              <User size={28} weight="regular" aria-hidden="true" />
+            )}
+          </div>
+          <div className={s.callHostDetails}>
+            <p className={s.callHostName}>{siteConfig.callHostName}</p>
+            <p className={s.callHostRole}>{siteConfig.callHostRole}</p>
+          </div>
+        </div>
         <ContactDetails />
       </section>
       <BookingCalendar />

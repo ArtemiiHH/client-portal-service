@@ -818,6 +818,49 @@
   flex-shrink: 0;
   margin-top: 2px;
 }
+.callHost {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-top: 28px;
+}
+.callHostAvatar {
+  display: grid;
+  place-items: center;
+  flex: 0 0 58px;
+  width: 58px;
+  height: 58px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 50%;
+  background: var(--surface);
+  color: var(--accent);
+}
+.callHostAvatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 50% 45%;
+  transform: scale(1.2);
+  transform-origin: 50% 45%;
+}
+.callHostDetails {
+  min-width: 0;
+}
+.callHostName {
+  margin: 0;
+  font-size: var(--font-body);
+  font-weight: 700;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.callHostRole {
+  margin: 3px 0 0;
+  color: #adb4bd;
+  font-size: var(--font-body);
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
 .contactDetails {
   margin: 24px 0 0;
   padding-top: 18px;
