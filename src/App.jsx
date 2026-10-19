@@ -24,7 +24,7 @@ const nav = [
   ["About", "/about"],
   ["Contact", "/contact"],
 ];
-const headerNav = [nav[0], nav[1], ["Pricing", "/#pricing"], nav[2]];
+const headerNav = [nav[0], ["Pricing", "/#pricing"], nav[1], nav[2]];
 const steps = [
   [
     MagnifyingGlass,
