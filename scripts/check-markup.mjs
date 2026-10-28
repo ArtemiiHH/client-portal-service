@@ -116,14 +116,13 @@ try {
     "Delivery",
   ])
     assert(about.includes(copy));
-  assert.equal(
-    (about.match(/SAMPLE \/ NOT A REAL TESTIMONIAL/g) || []).length,
-    2,
-  );
+  assert(siteConfig.showDemoTestimonials, "testimonials enabled by default");
+  for (const name of ["Antreas Kyriakou", "Dricus Khumalo"])
+    assert(about.includes(name), `testimonial profile: ${name}`);
   siteConfig.showDemoTestimonials = false;
   assert(
     !render("/about").includes("What Clients Say"),
-    "production setting hides whole demo section",
+    "explicitly disabling testimonials hides the section",
   );
   const contact = render("/contact");
   for (const copy of [

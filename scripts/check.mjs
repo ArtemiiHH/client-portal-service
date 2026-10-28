@@ -30,9 +30,9 @@ try {
       }
       if (route === '/about') {
         assert.equal(await page.locator('main article').count(), 4);
-        const samples = await page.getByText('SAMPLE / NOT A REAL TESTIMONIAL', {exact:true}).count();
-        assert(samples === 0 || samples === 2);
-        if (process.env.EXPECT_PRODUCTION === '1') assert.equal(samples, 0);
+        assert.equal(await page.locator('#testimonials-title').count(), 1);
+        for (const name of ['Antreas Kyriakou', 'Dricus Khumalo'])
+          assert.equal(await page.getByText(name, {exact:true}).count(), 1);
       }
       if (route === '/contact') {
         assert.equal(await page.locator('#booking').count(), 1);

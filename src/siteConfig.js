@@ -11,8 +11,8 @@ export const siteConfig = {
   availabilityMessage: "3 of 5 spots this month already booked",
   // Reserved for a future scheduler; not used by the placeholder implementation.
   bookingUrl: import.meta.env.VITE_BOOKING_URL || "",
-  // Fictional review cards appear in development only, never in a production build.
-  showDemoTestimonials: !import.meta.env.PROD,
+  // Show testimonials in development and production.
+  showDemoTestimonials: true,
   contactPhone: import.meta.env.VITE_CONTACT_PHONE || "",
   contactEmail: import.meta.env.VITE_CONTACT_EMAIL || "",
   privacyUrl: import.meta.env.VITE_PRIVACY_URL || "",

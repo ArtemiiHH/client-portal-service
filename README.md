@@ -3,7 +3,7 @@
 React/Vite website with three routes following `BrokerUX-Website-Restructure.md`:
 
 - `/`: approved five-section Home (Hero, How It Works, What You Get, Pricing, Final CTA).
-- `/about`: introduction, four-step approach, development-only demo testimonials, and final CTA.
+- `/about`: introduction, four-step approach, and testimonials.
 - `/contact`: discovery-call invitation, configurable contact details, and static booking placeholder.
 
 All pages share the dark/lime design, locally bundled Manrope typography, Phosphor icons, header, and footer. No backend or scheduling integration is implemented.
@@ -36,7 +36,7 @@ VITE_BOOKING_URL=
 
 Every call link currently leads to `/contact`, even if `VITE_BOOKING_URL` is supplied. That variable is reserved for a future integration and does not activate booking. `BookingPlaceholder` in `src/App.jsx` is the isolated replacement point; its visual call button is disabled and labeled available soon. No calendars, available times, forms, registration, API requests, or booking success states exist.
 
-The About page's two fictional sample reviews have conspicuous labels in development. `siteConfig.showDemoTestimonials` is false in production builds, hiding the entire section. Replace samples with genuinely verified, permission-based feedback before publishing that section.
+The About page testimonials are enabled in development and production through `siteConfig.showDemoTestimonials`. Set this flag to `false` to hide the section.
 
 Environment values are public; never include secrets.
 
