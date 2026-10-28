@@ -872,6 +872,9 @@
   transform: scale(1.2);
   transform-origin: 50% 45%;
 }
+.testimonialCard .callHostAvatar img {
+  transform: scale(1.3);
+}
 .callHostDetails {
   min-width: 0;
 }

@@ -394,29 +394,36 @@ function DemoTestimonials() {
       <div className={s.centerHeading}>
         <p className={s.eyebrow}>CLIENT FEEDBACK</p>
         <h2 id="testimonials-title">What Clients Say</h2>
-        <p>
-          Illustrative examples — replace with verified client feedback before
-          publication.
-        </p>
       </div>
       <div className={s.testimonialGrid}>
         {[
           [
-            "The audit gave our team a much clearer picture of where users were struggling, with practical recommendations we could act on.",
-            "Example only · Forex Product Lead (fictional)",
+            "BrokerUX helped us understand where clients were getting stuck after signing up. The changes to onboarding and the deposit flow made the next steps clearer, helping us convert more registrations into clients making their first deposit.",
+            "Antreas Kyriakou",
+            "Head of Product",
+            "/images/testimonial-image1.png",
           ],
           [
-            "We appreciated the structured approach and the fact that the deliverables were designed for our existing product team.",
-            "Example only · Brokerage Operations Director (fictional)",
+            "We had people opening accounts but never funding them. BrokerUX gave our team practical recommendations to simplify the journey from registration to first deposit. After we made those changes, more new clients followed through and funded their accounts.",
+            "Dricus Khumalo",
+            "COO",
+            "/images/testimonial-image2.png",
           ],
-        ].map(([quote, attribution]) => (
+        ].map(([quote, name, position, photo]) => (
           <figure
             className={`${s.glassCard} ${s.testimonialCard}`}
-            key={attribution}
+            key={name}
           >
-            <p className={s.sampleLabel}>SAMPLE / NOT A REAL TESTIMONIAL</p>
             <blockquote>“{quote}”</blockquote>
-            <figcaption>{attribution}</figcaption>
+            <figcaption className={s.callHost}>
+              <div className={s.callHostAvatar}>
+                <img src={photo} alt="" loading="lazy" />
+              </div>
+              <div className={s.callHostDetails}>
+                <p className={s.callHostName}><strong>{name}</strong></p>
+                <p className={s.callHostRole}>{position}</p>
+              </div>
+            </figcaption>
           </figure>
         ))}
       </div>
@@ -436,11 +443,11 @@ function AboutPage() {
               ABOUT BROKERUX
             </h1>
             <p className={s.heroCopy}>
-              We audit your brokerage’s client portal to find friction in sign-up,
-              verification, and deposits. Your team gets prioritized fixes, Figma
-              redesigns, and a roadmap to put them into practice. The goal is to
-              turn more sign-ups into funded accounts and keep clients from
-              dropping off before their first deposit.
+              We audit your brokerage’s client portal to find friction in
+              sign-up, verification, and deposits. Your team gets prioritized
+              fixes, Figma redesigns, and a roadmap to put them into practice.
+              The goal is to turn more sign-ups into funded accounts and keep
+              clients from dropping off before their first deposit.
             </p>
           </div>
           <img
@@ -476,20 +483,6 @@ function AboutPage() {
           </div>
         </section>
         <DemoTestimonials />
-        <section
-          className={`${s.section} ${s.contact}`}
-          aria-labelledby="about-cta-title"
-        >
-          <h2 id="about-cta-title">
-            Let's Improve Your
-            <br />
-            Client Portal.
-          </h2>
-          <p className={s.contactCopy}>
-            Tell us about your portal and the challenges your team is facing.
-          </p>
-          <Button href="/contact">Get in Touch</Button>
-        </section>
       </div>
     </>
   );
