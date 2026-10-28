@@ -10,12 +10,11 @@ import {
   Stack,
   MapTrifold,
   EnvelopeSimple,
-  Phone,
   ChatCircle,
   ClipboardText,
   User,
 } from "@phosphor-icons/react";
-import { siteConfig, safeUrl, safeEmail, safePhone } from "./siteConfig";
+import { siteConfig, safeUrl, safeEmail } from "./siteConfig";
 import s from "./App.module.css";
 import { usePageNavigation } from "./usePageNavigation";
 
@@ -489,7 +488,6 @@ function AboutPage() {
 }
 function ContactDetails() {
   const email = safeEmail(siteConfig.contactEmail);
-  const phone = safePhone(siteConfig.contactPhone);
   return (
     <dl className={s.contactDetails}>
       <div>
@@ -501,19 +499,6 @@ function ContactDetails() {
           ) : (
             <>
               <span>artemii@brokerux.com</span>
-            </>
-          )}
-        </dd>
-      </div>
-      <div>
-        <Phone size={21} aria-hidden="true" />
-        <dt>Phone</dt>
-        <dd>
-          {phone ? (
-            <a href={`tel:${phone}`}>{siteConfig.contactPhone}</a>
-          ) : (
-            <>
-              <span>+XXX XX XXX XXX</span>
             </>
           )}
         </dd>
