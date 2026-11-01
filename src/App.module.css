@@ -805,7 +805,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
-  padding-block: 76px 86px;
+  padding-block: 50px 86px;
   align-items: start;
 }
 .contactInvitation h1 {

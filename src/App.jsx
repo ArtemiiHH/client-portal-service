@@ -505,7 +505,7 @@ function ContactDetails() {
   );
 }
 const calendlyUrl =
-  "https://calendly.com/artemii-barashkov-dev/free-30-minute-ux-consultation?hide_event_type_details=1&hide_gdpr_banner=1";
+  "https://calendly.com/alex-brokerux/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=ffffff&text_color=000000";
 
 export function BookingCalendar() {
   const widgetRef = useRef(null);
@@ -519,6 +519,7 @@ export function BookingCalendar() {
       window.Calendly.initInlineWidget({
         url: calendlyUrl,
         parentElement: container,
+        resize: true,
       });
     };
 
@@ -556,7 +557,7 @@ export function BookingCalendar() {
         className="calendly-inline-widget"
         data-url={calendlyUrl}
         data-auto-load="false"
-        style={{ minWidth: "320px", height: "600px" }}
+        style={{ minWidth: "320px", height: "540px" }}
       />
     </aside>
   );
