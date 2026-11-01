@@ -498,7 +498,7 @@ function ContactDetails() {
             <a href={`mailto:${email}`}>{email}</a>
           ) : (
             <>
-              <span>artemii@brokerux.com</span>
+              <span>alex@brokerux.com</span>
             </>
           )}
         </dd>

@@ -1,7 +1,7 @@
 /** Add real contact details before publishing. No invented identity or destination. */
 export const siteConfig = {
   brand: "BrokerUX",
-  callHostName: import.meta.env.VITE_CALL_HOST_NAME || "Artemii Barashkov",
+  callHostName: import.meta.env.VITE_CALL_HOST_NAME || "Alex",
   callHostRole:
     import.meta.env.VITE_CALL_HOST_ROLE ||
     "Founder of BrokerUX, your host on this call",
