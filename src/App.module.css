@@ -875,21 +875,24 @@
 .testimonialCard .callHostAvatar img {
   transform: scale(1.4);
 }
-.callHostDetails {
+div.callHostDetails {
   min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
-.callHostName {
+p.callHostName {
   margin: 0;
   font-size: var(--font-body);
   font-weight: 700;
-  line-height: 1.5;
+  line-height: 0.85;
   overflow-wrap: anywhere;
 }
-.callHostRole {
-  margin: 3px 0 0;
+p.callHostRole {
+  margin: 0;
   color: #adb4bd;
   font-size: var(--font-body);
-  line-height: 1.5;
+  line-height: 0.85;
   overflow-wrap: anywhere;
 }
 .contactDetails {
