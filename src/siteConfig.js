@@ -6,7 +6,7 @@ export const siteConfig = {
     import.meta.env.VITE_CALL_HOST_ROLE ||
     "Founder of BrokerUX, your host on this call",
   callHostPhoto:
-    import.meta.env.VITE_CALL_HOST_PHOTO || "/images/profile-pic.jpg",
+    import.meta.env.VITE_CALL_HOST_PHOTO || "/images/profile-edited-small.jpg",
   // Owner-maintained capacity message; update as monthly availability changes.
   availabilityMessage: "3 of 5 spots this month already booked",
   // Reserved for a future scheduler; not used by the placeholder implementation.

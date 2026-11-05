@@ -875,6 +875,9 @@
 .testimonialCard .callHostAvatar img {
   transform: scale(1.4);
 }
+.contactInvitation .callHostAvatar img {
+  transform: translateY(-8px) scale(1.2);
+}
 div.callHostDetails {
   min-width: 0;
   display: flex;
