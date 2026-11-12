@@ -106,7 +106,7 @@ try {
     "pricing-title",
     "contact-title",
   ]);
-  assert.equal((home.match(/€3,000/g) || []).length, 1);
+  assert.equal((home.match(/€1,000/g) || []).length, 1);
   assert(!home.includes("booking-placeholder"));
   const about = render("/about");
   for (const copy of [

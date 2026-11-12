@@ -8,8 +8,8 @@ A fixed-fee B2B consulting service helping **Forex/CFD brokers** identify usabil
 - Secondary: Forex CRM and client portal technology providers.
 - Decision-makers: Head of Product, Product Director, COO, or founder.
 
-## Core Offer — €3,000
-**Timeline:** Approximately 2–3 weeks per project.
+## Core Offer — €1,000
+**Timeline:** 1 week per project.
 
 **Deliverables:**
 1. UX audit of up to **10 agreed portal screens** and **3 key user journeys** (e.g., dashboard, deposits/withdrawals, account management).
@@ -40,7 +40,7 @@ A fixed-fee B2B consulting service helping **Forex/CFD brokers** identify usabil
 5. Book discovery calls and sell the fixed-scope audit or a smaller paid pilot.
 
 ## Business Goal
-Reach **€2,000–€3,000 in gross monthly revenue**, initially by closing approximately **one €3,000 project per month**. Revenue will vary with deal flow and delivery capacity.
+Reach **€2,000–€3,000 in gross monthly revenue**, initially by closing approximately **two to three €1,000 projects per month**. Revenue will vary with deal flow and delivery capacity.
 
 ## Important Considerations
 Keep client work separate from current employment; check conflict-of-interest and confidentiality obligations. Use authorized portal access and avoid proprietary employer information. Start solo, keep scope tight, and collect permission-based testimonials and case studies from completed projects.

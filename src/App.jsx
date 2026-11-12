@@ -285,9 +285,9 @@ function Pricing() {
           </div>
           <h3>Client Portal UX Audit &amp; Improvement Roadmap</h3>
           <p className={s.price}>
-            €3,000 <span>/ project</span>
+            €1,000 <span>/ project</span>
           </p>
-          <p className={s.timing}>Delivered in under 2 weeks</p>
+          <p className={s.timing}>Delivered in 1 week</p>
           <Button>Discuss Your Portal</Button>
         </div>
         <ul className={s.included}>
@@ -577,7 +577,7 @@ function ContactPage() {
         <p className={s.invitationCopy}>
           Find out what could be preventing more of your traders from funding
           their accounts. Start with a conversation, then get a clear plan to
-          address the friction in under 2 weeks.
+          address the friction in 1 week.
         </p>
         <h2>What we'll discuss:</h2>
         <ul className={s.discussionList}>

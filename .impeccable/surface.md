@@ -12,7 +12,7 @@ STORY: Home (`/`) retains exactly five main sections, in order: Hero → How It 
 
 FIRST VIEWPORT: Centered eyebrow, large two-line headline inside a fine rectangular frame, concise explanation, discovery-call action, process text link, and understated scope indicators. No large illustration.
 
-FORM: Three numbered process cards become stacked on mobile. Deliverables are a ruled list, without invented sample client work. Pricing presents one €2,500 fixed package with approximately 2–3 week delivery, inclusions, and exclusions. The final CTA is centered and spacious. No FAQ or contact form.
+FORM: Three numbered process cards become stacked on mobile. Deliverables are a ruled list, without invented sample client work. Pricing presents one €2,500 fixed package with 1 week delivery, inclusions, and exclusions. The final CTA is centered and spacious. No FAQ or contact form.
 
 ACTION: All call links target `/contact#booking`; About’s Get in Touch targets `/contact`. The reserved `bookingUrl` is ignored. BookingPlaceholder has a focusable `#booking` target, a disabled visual CTA, and visible “Booking available soon” status. There are no slots, calendar API, embed, backend, or booking state. Valid configured real email/phone enable mailto/tel links; missing details remain labeled inactive placeholders. Footer email/LinkedIn/privacy appear only with valid configuration; unconfigured privacy is absent.
 
